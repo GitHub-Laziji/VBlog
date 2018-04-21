@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-    import QueryApi from '@/api/query'
+
     export default{
         data(){
             return{

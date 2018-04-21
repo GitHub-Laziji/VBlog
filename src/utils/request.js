@@ -3,7 +3,7 @@ import Vue from 'vue'
 
 
 const service = axios.create({
-  baseURL: "https://gist.githubusercontent.com",
+  baseURL: "",
   timeout: 15000 // 请求超时时间
 })
 
