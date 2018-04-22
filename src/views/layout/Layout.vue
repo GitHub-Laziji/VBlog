@@ -7,8 +7,8 @@
             <a href="https://github.com/GitHub-Laziji" class="btn">GitHub主页</a>
             <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn">博客源码</a> 
         </section>
-        <section class="main-content">
-            <el-row style="min-height: 800px">
+        <section class="main-content" style="min-height: 800px">
+            <el-row>
                 <el-col :span="6" style="padding: 0px 20px 0px 20px">
                     <sidebar></sidebar>
                 </el-col>
@@ -16,7 +16,7 @@
                     <app-main></app-main>
                 </el-col>
             </el-row>
-            <el-row style="min-height: 800px">
+            <el-row>
                 <el-col :span="6">
                     <foot></foot>
                 </el-col> 

@@ -4,6 +4,7 @@ import Error404 from '@/views/error/Error404'
 import Layout from '@/views/layout/Layout'
 
 import BlogMain from '@/views/blog/Main'
+import BlogEdit from '@/views/blog/Edit'
 import Home from '@/views/Home'
 import Test from '@/views/Test'
 
@@ -40,6 +41,10 @@ export const constantRouterMap =  [
             {
                 path: 'main',
                 component: BlogMain
+            },
+            {
+                path: 'edit',
+                component: BlogEdit
             }
         ]
     },
