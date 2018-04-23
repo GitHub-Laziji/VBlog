@@ -5,6 +5,7 @@ import Layout from '@/views/layout/Layout'
 
 import BlogMain from '@/views/blog/Main'
 import BlogEdit from '@/views/blog/Edit'
+import BlogDetails from '@/views/blog/Details'
 import Home from '@/views/Home'
 import Test from '@/views/Test'
 
@@ -45,6 +46,10 @@ export const constantRouterMap =  [
             {
                 path: 'edit',
                 component: BlogEdit
+            },
+            {
+                path: 'details/:id',
+                component: BlogDetails
             }
         ]
     },

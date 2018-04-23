@@ -9,7 +9,14 @@
         
         <el-card shadow="hover" v-for="(item,index) in blogs" :key="'p'+index" style="margin-bottom: 20px">
             <div slot="header" >
-                <span><i class="el-icon-tickets"></i>&nbsp;&nbsp;{{item.title}}</span>
+                <span>
+                    <a 
+                    style="text-decoration:none;cursor:pointer" 
+                    @click="goDetails(item.id)">
+                        <i class="el-icon-tickets"></i>&nbsp;&nbsp;
+                        {{item.title}}
+                    </a>
+                </span>
                 <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-share"></el-button>
             </div>
             {{item.description}}
@@ -36,11 +43,17 @@
                         data['title']=key
                         data['url']=result[i].files[key]
                         data['description']=result[i]['description']
+                        data['id']=result[i]['id']
                         // console.log(data)
                         this.blogs.push(data)
                     }
                 }
             }).then(()=>this.loading=false)
+        },
+        methods:{
+            goDetails(id){
+                this.$router.push("/user/blog/details/"+id)
+            }
         }
     }
 </script>

@@ -15,7 +15,7 @@ export default {
     let files = {}
     files[form.title]={content:form.content}
     return request({
-      url: 'https://api.github.com/gists?access_token=Token',
+      url: 'https://api.github.com/gists?access_token=T',
       method: 'post',
       data:{
         "description": form.description,
