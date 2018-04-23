@@ -4,25 +4,23 @@
             <h1 class="project-name">LaZiji</h1>
             <h2 class="project-tagline">欢迎来到辣子鸡的个人博客.</h2>
             
-            <a href="https://github.com/GitHub-Laziji" class="btn">GitHub主页</a>
-            <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn">博客源码</a> 
+            <a href="https://github.com/GitHub-Laziji" class="btn" target="_blank">GitHub主页</a>
+            <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn" target="_blank">博客源码</a> 
         </section>
-        <section class="main-content" style="min-height: 800px">
+        <section class="main-content">
             <el-row>
-                <el-col :span="6" style="padding: 0px 20px 0px 20px">
+                <el-col :span="6" style="padding-right:20px">
                     <sidebar></sidebar>
                 </el-col>
-                <el-col :span="18" style="padding: 0px 20px 0px 20px">
+                <el-col :span="18" style="padding-left:20px">
                     <app-main></app-main>
                 </el-col>
             </el-row>
-            <el-row>
-                <el-col :span="6">
-                    <foot></foot>
-                </el-col> 
-            </el-row>
+            
         </section>
-
+        <section class="foot">
+            <foot></foot>
+        </section>
 
        
     </div>
@@ -96,10 +94,18 @@
         margin-left: 1rem;
     }
     .main-content {
-        max-width: 74rem;
-        padding: 2rem 6rem;
+        max-width: 64rem;
+        padding: 30px 0px 30px 0px;
         margin: 0 auto;
         font-size: 1.1rem;
+        word-wrap: break-word;
+        min-height: 800px;
+    }
+    .foot {
+        max-width: 67rem;
+        margin: 0 auto;
+        font-size: 12px !important;
+        color: #586069 !important;
         word-wrap: break-word;
     }
 
