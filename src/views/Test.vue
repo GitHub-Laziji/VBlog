@@ -12,9 +12,7 @@
             }
         },
         mounted(){
-            QueryApi.test().then((result)=>{
-                console.log(result)
-            })
+            this.$store.dispatch('Authentication', "asdasddddd")
         },
         methods:{
 

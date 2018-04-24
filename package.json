@@ -19,7 +19,8 @@
     "js-cookie": "2.2.0",
     "vue": "^2.5.2",
     "mavon-editor": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "3.0.1"
   },
   "devDependencies": {
     "less": "^2.7.3",

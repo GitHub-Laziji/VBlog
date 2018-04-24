@@ -14,12 +14,30 @@
                 </el-menu-item>
             </el-menu>
         </el-card>
+        <el-card shadow="never" style="margin-top: 20px;text-align: center">
+            <div v-if="!token" style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
+                <el-tag type="warning" size="small">&nbsp;</el-tag>&nbsp;&nbsp;
+                Token未绑定&nbsp;&nbsp;
+                <el-button type="text" @click="openTokenDialog">绑定</el-button>
+            </div>
+            <div v-if="token" style="font-size: 0.9rem;line-height: 1.5;color: #303133;">
+                <el-tag type="success" size="small">&nbsp;</el-tag>&nbsp;&nbsp;
+                Token已绑定&nbsp;&nbsp;
+                <el-button type="text" @click="cancellation">注销</el-button>
+            </div>
+        </el-card>
+        <token-dialog ref="tokenDialog"></token-dialog>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     import { constantRouterMap } from '@/router'
+    import TokenDialog from '@/views/common/TokenDialog'
     export default{
+        components: {
+            TokenDialog
+        },
         data(){
             return {
                 constantRouterMap,
@@ -27,6 +45,11 @@
                 parentUrl:"",
                 menuList:[]
             }
+        },
+        computed: {
+            ...mapGetters([
+                'token',
+            ])
         },
         mounted(){
             // console.log(this.$route.path.split("/")[2])
@@ -36,6 +59,14 @@
         methods:{
             onSelect(index){
                 this.$router.push(index)
+            },
+            openTokenDialog(){
+                this.$refs.tokenDialog.open(()=>{
+                    console.log("aaa")
+                })
+            },
+            cancellation(){
+                this.$store.dispatch("Cancellation")
             }
         }
     }

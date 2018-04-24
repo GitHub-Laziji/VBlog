@@ -8,14 +8,19 @@ export default {
   },
   list:function(){
     return request({
-      url: 'https://api.github.com/users/GitHub-Laziji/gists'
+      url: '/users/GitHub-Laziji/gists'
+    })
+  },
+  single:function(id){
+    return request({
+      url: '/gists/'+id
     })
   },
   create:function(form){
     let files = {}
     files[form.title]={content:form.content}
     return request({
-      url: 'https://api.github.com/gists?access_token=T',
+      url: '/gists',
       method: 'post',
       data:{
         "description": form.description,

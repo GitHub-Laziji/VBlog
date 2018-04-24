@@ -19,9 +19,13 @@
                 </span>
                 <el-button style="float: right; padding: 3px 0" type="text" icon="el-icon-share"></el-button>
             </div>
-            {{item.description}}
+            <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
+                最近更新 {{item.updateTime}}
+            </div>
+            <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
+                {{item.description}}
+            </div>
         </el-card>
-           
     </div>
 </template>
 <script>
@@ -44,6 +48,8 @@
                         data['url']=result[i].files[key]
                         data['description']=result[i]['description']
                         data['id']=result[i]['id']
+                        data['createTime']=this.$util.utcToLocal(result[i]['created_at'])
+                        data['updateTime']=this.$util.utcToLocal(result[i]['updated_at'])
                         // console.log(data)
                         this.blogs.push(data)
                     }

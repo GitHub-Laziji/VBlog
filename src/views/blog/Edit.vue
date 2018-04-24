@@ -23,13 +23,17 @@
                 </el-form-item>
             </el-form>
         </el-card>
-        
-       
+        <token-dialog ref="tokenDialog"></token-dialog>
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
+    import TokenDialog from '@/views/common/TokenDialog'
     import GistApi from '@/api/gist'
     export default{
+        components: {
+            TokenDialog
+        },
         data(){
             return {
                 form: {
@@ -55,12 +59,26 @@
                 }
             }
         },
+        computed: {
+            ...mapGetters([
+                'token',
+            ])
+        },
         methods:{
             onSubmit(){
-                this.submitButton.loading=true
-                this.submitButton.disabled=true
+                if(this.token){
+                    this.publish()
+                }else{
+                    this.$refs.tokenDialog.open(()=>{
+                        this.publish()
+                    })
+                }
+            },
+            publish(){   
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
+                        this.submitButton.loading=true
+                        this.submitButton.disabled=true
                         GistApi.create(this.form).then((result)=>{
                             console.log(JSON.stringify(result))
                             this.$message({
@@ -71,8 +89,6 @@
                             this.submitButton.loading=false
                             this.submitButton.disabled=false
                         })
-                    } else {
-                        
                     }
                 })
             }

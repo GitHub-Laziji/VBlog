@@ -18,7 +18,7 @@ export default {
 	},
 	//yyyy-MM-ddThh-mm-ss.*
 	utcToLocal(time){
-		 let arr = time.split(/[-T:\.]/)
+		 let arr = time.split(/[^0-9]/)
 		 let worldDate = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5])
 		 let localDate = new Date(worldDate.getTime()+8*60*60*1000)
 		 return localDate.getFullYear()+"-"+(localDate.getMonth()+1)+"-"+localDate.getDate()+" "+localDate.getHours()+":"+localDate.getMinutes()+":"+localDate.getSeconds()
