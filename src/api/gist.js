@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import store from '../store/index'
 
 export default {
   test:function(){
@@ -7,8 +8,9 @@ export default {
     })
   },
   list:function(){
+    let githubUsername=store.state.configuration.githubUsername
     return request({
-      url: '/users/GitHub-Laziji/gists'
+      url: '/users/'+githubUsername+'/gists'
     })
   },
   single:function(id){

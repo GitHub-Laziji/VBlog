@@ -1,26 +1,30 @@
 <template>
     <div id="app">
         <router-view/>
-        </div>
+    </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default {
         name: 'App',
-        mounted(){
+        computed: {
+            ...mapGetters([
+                'githubUsername'
+            ])
+        },
+        created(){
             let xmlhttp
             if (window.XMLHttpRequest){
                 xmlhttp=new XMLHttpRequest()
-            }
-            else{
+            }else{
                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
             }
             xmlhttp.open("GET","../static/configuration.json",false)
             xmlhttp.send()
             let configuration = JSON.parse(xmlhttp.responseText)
             this.$store.dispatch("Init",configuration)
-            console.log(configuration)
-
+            console.log('加载配置文件...\n'+JSON.stringify(configuration))
         }
     }
 </script>

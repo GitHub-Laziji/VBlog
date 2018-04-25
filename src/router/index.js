@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Error404 from '@/views/error/Error404'
 import Layout from '@/views/layout/Layout'
 
+import NewMain from '@/views/new/Main'
+
 import BlogMain from '@/views/blog/Main'
 import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
@@ -25,7 +27,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Home
+                component: NewMain
             }
         ]
     },

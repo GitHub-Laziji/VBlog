@@ -10,6 +10,7 @@
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
                     <mavon-editor
+                    ref="md"
                     v-model="form.content"
                     :subfield="false"/>
                 </el-form-item>
@@ -80,7 +81,7 @@
                         this.submitButton.loading=true
                         this.submitButton.disabled=true
                         GistApi.create(this.form).then((result)=>{
-                            console.log(JSON.stringify(result))
+                            // console.log(JSON.stringify(result))
                             this.$message({
                                 message: '发表成功',
                                 type: 'success'
