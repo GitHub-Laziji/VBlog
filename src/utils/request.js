@@ -29,6 +29,20 @@ service.interceptors.response.use(
     return responseJson
   },
   error => {
+    let message
+    switch(error.response.status){
+      case 401:
+        message = "Token错误"
+        break
+      default:
+        message = error.response.data.message
+        break
+    }
+    Vue.prototype.$message({
+      message: message,
+      type: 'error'
+    })
+    return Promise.reject('error')
   }
 )
 

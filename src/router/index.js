@@ -84,7 +84,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Readme
+                component: Test
             }
         ]
     },

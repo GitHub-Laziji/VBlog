@@ -7,6 +7,12 @@ export default {
       url: ''
     })
   },
+  verifyToken:function(){
+    let githubUsername=store.state.configuration.githubUsername
+    return request({
+      url: '/users/'+githubUsername+'/gists'
+    })
+  },
   list:function(){
     let githubUsername=store.state.configuration.githubUsername
     return request({

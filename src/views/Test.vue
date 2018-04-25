@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <el-button @click="tt" >aaa</el-button>
     </div>
 </template>
 <script>
@@ -12,10 +12,12 @@
             }
         },
         mounted(){
-            this.$store.dispatch('Authentication', "asdasddddd")
+            
         },
         methods:{
-
+            tt(){
+                this.$util.fullScreen()
+            }
         }
     }
 </script>
