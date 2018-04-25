@@ -5,13 +5,17 @@
         :visible.sync="show"
         width="500px">
             <el-form :model="tokenForm" ref="tokenForm" label-width="100px">
-            <el-form-item
-              prop="token"
-              label="Token"
-              :rules="[{ required: true, message: '请输入accessToken', trigger: 'blur' }]">
-              <el-input v-model="tokenForm.token"></el-input>
-            </el-form-item>
-          </el-form>
+                <el-form-item
+                label="GitHub">
+                    <el-tag>{{githubUsername}}</el-tag>
+                </el-form-item>
+                <el-form-item
+                prop="token"
+                label="Token"
+                :rules="[{ required: true, message: '请输入accessToken', trigger: 'blur' }]">
+                    <el-input v-model="tokenForm.token"></el-input>
+                </el-form-item>
+            </el-form>
 
         <span slot="footer" class="dialog-footer">
             <el-button @click="show = false">取 消</el-button>
@@ -22,6 +26,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
     export default{
         data(){
             return {
@@ -31,6 +36,11 @@
                     token:""
                 }
             }
+        },
+        computed: {
+            ...mapGetters([
+                'githubUsername'
+            ])
         },
         methods:{
             open(handleClose){

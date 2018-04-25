@@ -49,6 +49,7 @@
         computed: {
             ...mapGetters([
                 'token',
+                'githubUsername'
             ])
         },
         mounted(){

@@ -1,10 +1,10 @@
 <template>
     <div>
         <section class="page-header">
-            <h1 class="project-name">LaZiji</h1>
-            <h2 class="project-tagline">欢迎来到辣子鸡的个人博客.</h2>
+            <h1 class="project-name">{{blogTitle}}</h1>
+            <h2 class="project-tagline">{{blogDescribe}}</h2>
             
-            <a href="https://github.com/GitHub-Laziji" class="btn" target="_blank">GitHub主页</a>
+            <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
             <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn" target="_blank">博客源码</a> 
         </section>
         <section class="main-content">
@@ -26,6 +26,7 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
     import Sidebar from './components/Sidebar'
     import AppMain from './components/AppMain'
     import Foot from './components/Foot'
@@ -39,7 +40,14 @@
             return {
 
             }
-        }
+        },
+        computed: {
+            ...mapGetters([
+                'githubUsername',
+                'blogTitle',
+                'blogDescribe',
+            ])
+        },
     }
 </script>
 
