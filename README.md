@@ -39,10 +39,17 @@
 在 *github > settings > Developer settings > Personal access tokens*  勾选gist权限 获取Token
 
 
+## License
+
+Code licensed under the [MIT License](LICENSE).
+
+
 ------
 
 
 作者 *Laziji*
+
+
 
 
 
