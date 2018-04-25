@@ -41,7 +41,7 @@
 
 ## License
 
-Code licensed under the [MIT License](LICENSE).
+Code licensed under the [Mozilla](LICENSE).
 
 
 ------
