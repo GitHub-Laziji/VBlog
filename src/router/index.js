@@ -8,7 +8,8 @@ import NewMain from '@/views/new/Main'
 import BlogMain from '@/views/blog/Main'
 import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
-import Home from '@/views/Home'
+
+import Readme from '@/views/Readme'
 import Test from '@/views/Test'
 
 Vue.use(Router)
@@ -67,7 +68,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Test
+                component: Readme
             }
         ]
     },
@@ -83,7 +84,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Home
+                component: Readme
             }
         ]
     },
