@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <el-card shadow="never" style="min-height: 600px" v-if="blog.id">
+    <div style="min-height: 600px" v-loading="loading">
+        <el-card shadow="never" style="min-height: 400px" v-if="blog.id">
             <div slot="header">
                 <span>{{blog.title}}</span>
             </div>

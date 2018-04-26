@@ -1,5 +1,5 @@
 <template>
-    <div style="min-height: 1000px" v-loading="loading">
+    <div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="margin-bottom: 20px">
             <el-input placeholder="请输入关键字" v-model="searchKey" clearable style="width: 300px" ></el-input>
             <el-button icon="el-icon-search" circle plain style="margin-left: 10px"></el-button>

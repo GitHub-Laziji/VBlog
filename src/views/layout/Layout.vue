@@ -10,7 +10,9 @@
                 </el-tooltip>
             </div>
             <div 
-            v-for="item in randomIcon"
+            @mouseenter="moveIcon(index)"
+            v-for="(item,index) in randomIcon"
+            :key="'ri'+index"
             :style="'position:absolute; top:'+item.top+'px; left:'+item.left+'px; z-index:1;'" >
                 <font :style="'font-size: '+item.size+'px;color:#fff;'"><b>♪</b></font>
             </div>
@@ -74,6 +76,11 @@
             }
         },
         methods:{
+            moveIcon(index){
+                let width = window.innerWidth
+                this.randomIcon[index]["top"]=this.$util.randomInt(20,300)
+                this.randomIcon[index]["left"]=this.$util.randomInt(30,width-30)
+            },
             full(){
                 if(!this.fullButton.full){
                     this.$util.fullScreen()

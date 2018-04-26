@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <el-card shadow="never" style="min-height: 600px">
+    <div style="min-height: 600px" v-loading="loading">
+        <el-card shadow="never" style="min-height: 400px"  >
             <div slot="header">
                 <span>{{blog.title}}</span>
                 <el-button 
@@ -29,10 +29,12 @@
                     title:"",
                     content:"",
                     description:""
-                }
+                },
+                loading:false,
             }
         },
         mounted(){
+            this.loading=true
             this.blog.id=this.$route.params.id
             // console.log(this.$route.params.id)
             GistApi.single(this.blog.id).then((result)=>{
@@ -45,7 +47,7 @@
                     // console.log(JSON.stringify(this.blog))
                     break
                 }
-            })
+            }).then(()=>this.loading=false)
             
             
         },
