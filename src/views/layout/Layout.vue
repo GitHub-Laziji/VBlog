@@ -1,9 +1,16 @@
 <template>
     <div>
         <section class="page-header">
+            <div style="position:absolute; top:20px; right:20px; z-index:2;">
+                <el-tooltip effect="dark" :content="fullButton.full?'退出':'全屏'" placement="bottom-end">
+                    <el-button 
+                    @click="full"
+                    :icon="fullButton.full?'el-icon-close':'el-icon-rank'"
+                    circle></el-button>
+                </el-tooltip>
+            </div>
             <h1 class="project-name">{{blogTitle}}</h1>
             <h2 class="project-tagline">{{blogDescribe}}</h2>
-            
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
             <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn" target="_blank">博客源码</a> 
         </section>
@@ -38,7 +45,9 @@
         },
         data(){
             return {
-
+                fullButton:{
+                    full:false
+                }
             }
         },
         computed: {
@@ -48,6 +57,17 @@
                 'blogDescribe',
             ])
         },
+        methods:{
+            full(){
+                if(!this.fullButton.full){
+                    this.$util.fullScreen()
+                    this.fullButton.full=true
+                }else{
+                    this.$util.fullExit()
+                    this.fullButton.full=false
+                }
+            }
+        }
     }
 </script>
 
