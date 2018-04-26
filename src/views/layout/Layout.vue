@@ -9,6 +9,11 @@
                     circle></el-button>
                 </el-tooltip>
             </div>
+            <div 
+            v-for="item in randomIcon"
+            :style="'position:absolute; top:'+item.top+'px; left:'+item.left+'px; z-index:1;'" >
+                <font :style="'font-size: '+item.size+'px;color:#fff;'"><b>♪</b></font>
+            </div>
             <h1 class="project-name">{{blogTitle}}</h1>
             <h2 class="project-tagline">{{blogDescribe}}</h2>
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
@@ -47,7 +52,8 @@
             return {
                 fullButton:{
                     full:false
-                }
+                },
+                randomIcon:[]
             }
         },
         computed: {
@@ -56,6 +62,16 @@
                 'blogTitle',
                 'blogDescribe',
             ])
+        },
+        mounted(){
+            let width = window.innerWidth
+            for(let i=0;i<12;i++){
+                let temp={}
+                temp["top"]=this.$util.randomInt(20,300)
+                temp["left"]=this.$util.randomInt(30,width-30)
+                temp["size"]=this.$util.randomInt(20,40)
+                this.randomIcon.push(temp)
+            }
         },
         methods:{
             full(){

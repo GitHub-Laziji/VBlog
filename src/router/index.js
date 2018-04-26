@@ -10,7 +10,7 @@ import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
 
 import Readme from '@/views/Readme'
-import Test from '@/views/Test'
+import License from '@/views/License'
 
 Vue.use(Router)
 
@@ -84,7 +84,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Test
+                component: License
             }
         ]
     },

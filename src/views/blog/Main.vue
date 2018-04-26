@@ -7,7 +7,7 @@
             <el-button type="primary" icon="el-icon-edit" round plain style="float: right;" @click="$router.push('/user/blog/edit')">写博文</el-button>
         </el-card>
         
-        <el-card shadow="hover" v-for="(item,index) in blogs" :key="'p'+index" style="margin-bottom: 20px">
+        <el-card shadow="hover" v-for="(item,index) in blogs" :key="'p'+index" style="margin-bottom: 20px" v-if="blogs&&blogs.length>0">
             <div slot="header" >
                 <span>
                     <a 
@@ -25,6 +25,9 @@
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
                 {{item.description}}
             </div>
+        </el-card>
+        <el-card shadow="hover" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blogs||blogs.length==0"> 
+            <font style="font-size: 30px;color:#dddddd "><b>还没有博客 (╯°Д°)╯︵ ┻━┻</b></font>
         </el-card>
     </div>
 </template>

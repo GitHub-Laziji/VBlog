@@ -29,6 +29,16 @@ export default {
 			return v.toString(16)
 		})
 	},
+	//s<=r<e
+	randomInt(s,e){
+		let d=e-s
+		if(d<0){
+			return s
+		}
+		let r = Math.random()*d + s
+		r = parseInt(r, 10)
+		return r
+	},
 	fullScreen() {   
 		var element= document.documentElement
 		if (window.ActiveXObject){

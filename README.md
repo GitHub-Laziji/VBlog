@@ -10,7 +10,7 @@
 
 - [x] 基于 GitHub Pages 无需服务器
 - [x] 改进传统 GitHub Pages 不能动态发布的缺陷
-- [x] 使用vue单页面，体验较好
+- [x] 使用vue单页面
 
 ### 演示地址
 [https://github-laziji.github.io][1]
