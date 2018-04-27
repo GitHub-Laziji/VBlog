@@ -3,7 +3,8 @@ const configuration = {
   state: {
     githubUsername:"",
     blogTitle:"",
-    blogDescribe:""
+    blogDescribe:"",
+    htmlTitle:""
   },
 
   mutations: {
@@ -20,6 +21,10 @@ const configuration = {
       if(!state.blogDescribe){
         state.blogDescribe="欢迎来到"+state.githubUsername+"的个人博客。"
       }
+      state.htmlTitle = configuration["html-title"]
+      if(!state.htmlTitle){
+        state.htmlTitle=state.githubUsername+"的博客"
+      }
     },
     // GET_PARAM:(state, name) => {
     //   return state.configuration[name]
@@ -27,7 +32,16 @@ const configuration = {
   },
 
   actions: {
-    Init({ commit }, configuration) {
+    Init({ commit }) {
+      let xmlhttp
+      if (window.XMLHttpRequest){
+        xmlhttp=new XMLHttpRequest()
+      }else{
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+      }
+      xmlhttp.open("GET","../../../static/configuration.json",false)
+      xmlhttp.send()
+      let configuration = JSON.parse(xmlhttp.responseText)
       commit('SET_CONFIGURATION',configuration)
     }
   }

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from '../store/index'
 import Router from 'vue-router'
 import Error404 from '@/views/error/Error404'
 import Layout from '@/views/layout/Layout'
@@ -29,7 +30,8 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: NewMain
+                component: NewMain,
+                meta:{ title:'最新动态' }
             }
         ]
     },
@@ -45,19 +47,23 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: BlogMain
+                component: BlogMain,
+                meta:{ title:'博客列表' }
             },
             {
                 path: 'add',
-                component: BlogAdd
+                component: BlogAdd,
+                meta:{ title:'发表博客' }
             },
             {
                 path: 'edit/:id',
-                component: BlogEdit
+                component: BlogEdit,
+                meta:{ title:'编辑博客' }
             },
             {
                 path: 'details/:id',
-                component: BlogDetails
+                component: BlogDetails,
+                meta:{ title:'博客详情' }
             }
         ]
     },
@@ -73,7 +79,8 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Readme
+                component: Readme,
+                meta:{ title:'README.md' }
             }
         ]
     },
@@ -89,7 +96,8 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: License
+                component: License,
+                meta:{ title:'License' }
             }
         ]
     },
@@ -110,6 +118,16 @@ export const constantRouterMap =  [
     }
 ]
 
-export default new Router({
-  routes: constantRouterMap
+
+const router = new Router({
+    routes: constantRouterMap
 })
+
+router.beforeEach((to, from, next) => {
+    Vue.prototype.$setTitle(to.meta.title)
+    next()
+})
+  
+
+
+export default router

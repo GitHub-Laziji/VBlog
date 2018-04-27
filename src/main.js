@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import util from './utils/util'
@@ -19,9 +17,16 @@ Vue.prototype.$markdown = function(value){
 
 Vue.prototype.$reload = function(context){
 	let NewPage = '/empty'
-    context.$router.push(NewPage)
-    context.$nextTick(() => (context.$router.go(-1)))
-    
+  context.$router.push(NewPage)
+  context.$nextTick(() => (context.$router.go(-1)))
+}
+
+Vue.prototype.$setTitle = function(title){
+	if (title) {
+    document.title = store.state.configuration.htmlTitle+" - "+title
+  }else{
+    document.title = store.state.configuration.htmlTitle
+  }
 }
 
 Vue.prototype.$util = util

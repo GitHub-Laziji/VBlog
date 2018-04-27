@@ -10,21 +10,13 @@
         name: 'App',
         computed: {
             ...mapGetters([
-                'githubUsername'
+                'githubUsername',
+                'htmlTitle'
             ])
         },
         created(){
-            let xmlhttp
-            if (window.XMLHttpRequest){
-                xmlhttp=new XMLHttpRequest()
-            }else{
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
-            }
-            xmlhttp.open("GET","../static/configuration.json",false)
-            xmlhttp.send()
-            let configuration = JSON.parse(xmlhttp.responseText)
-            this.$store.dispatch("Init",configuration)
-            console.log('加载配置文件...\n'+JSON.stringify(configuration))
+            this.$store.dispatch("Init")
+            this.$setTitle(this.$route.meta.title)
         }
     }
 </script>
