@@ -6,6 +6,7 @@ import Layout from '@/views/layout/Layout'
 import NewMain from '@/views/new/Main'
 
 import BlogMain from '@/views/blog/Main'
+import BlogAdd from '@/views/blog/Add'
 import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
 
@@ -47,7 +48,11 @@ export const constantRouterMap =  [
                 component: BlogMain
             },
             {
-                path: 'edit',
+                path: 'add',
+                component: BlogAdd
+            },
+            {
+                path: 'edit/:id',
                 component: BlogEdit
             },
             {

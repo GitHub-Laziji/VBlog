@@ -37,4 +37,23 @@ export default {
       }
     })
   },
+  edit:function(form){
+    let files = {}
+    files[form.title]={content:form.content}
+    return request({
+      url: '/gists/'+form.id,
+      method: 'PATCH',
+      data:{
+        "description": form.description,
+        "public": true,
+        "files": files
+      }
+    })
+  },
+  delete:function(id){
+    return request({
+      url: '/gists/'+id,
+      method: 'DELETE',
+    })
+  },
 }
