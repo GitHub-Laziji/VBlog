@@ -3,7 +3,7 @@
 		<el-row>
 			<el-col :span="10">
 				<div>
-					© 2018 GitHub-LaZiji&emsp;&emsp;
+					© 2018 GitHub-Laziji&emsp;&emsp;
 					<a href="https://github.com/GitHub-Laziji" target="_blank">Profile</a>&emsp;&emsp;
 					<a href="https://github.com/GitHub-Laziji/blog-vue" target="_blank">blog-vue</a>
 				</div>
