@@ -21,6 +21,43 @@
             <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
             <a href="https://github.com/GitHub-Laziji/blog-vue" class="btn" target="_blank">博客源码</a> 
         </section>
+        <div style="position:relative;  z-index:2;margin: auto;margin-top:-30px;width:64rem;">
+            <el-card shadow="never" :body-style="{ padding: '0px' }">
+                <el-row>
+                    <el-col :span="18">
+                        <el-menu mode="horizontal" @select="">
+                            <el-submenu index="2">
+                                <template slot="title">更多功能</template>
+                                <el-menu-item index="2-1">功能A</el-menu-item>
+                                <el-menu-item index="2-2">功能B</el-menu-item>
+                                <el-menu-item index="2-3">功能C</el-menu-item> 
+                            </el-submenu>
+                        </el-menu>
+                    </el-col>
+                    <el-col :span="4" style="text-align: right;">
+                        <div style="font-size: 20px;color:#606266;margin-top: 5px"><b>{{githubUsername}}</b></div>
+                        <div style="color:#606266;"><i class="el-icon-location-outline"></i>&nbsp;{{location?location:'未填写地址'}}<br></div>
+                    </el-col>
+                    <el-col :span="2"  style="text-align: center;">
+                        <img 
+                        v-popover:bigAvatar
+                        :src="avatarUrl" 
+                        style="margin-top: 4px;margin-right: 10px;width:52px; height:52px; border-radius:5px; border: 1px solid #EBEEF5"/>
+                        <el-popover
+                        ref="bigAvatar"
+                        placement="top-start"
+                        :title="githubUsername"
+                        width="200"
+                        trigger="hover">
+                        <i class="el-icon-star-off"></i>&emsp;{{name}}<br>
+                        <i class="el-icon-location-outline"></i>&emsp;{{location}}<br>
+                        <img :src="avatarUrl" style="width: 200px;height: 200px;">
+                        </el-popover>
+                    </el-col>
+                </el-row>
+                
+            </el-card>
+        </div>
         <section class="main-content">
             <el-row>
                 <el-col :span="6" style="padding-right:20px">
@@ -63,6 +100,9 @@
                 'githubUsername',
                 'blogTitle',
                 'blogDescribe',
+                'avatarUrl',
+                'name',
+                'location'
             ])
         },
         mounted(){

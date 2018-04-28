@@ -2,17 +2,6 @@ import request from '@/utils/request'
 import store from '../store/index'
 
 export default {
-  test:function(){
-    return request({
-      url: ''
-    })
-  },
-  verifyToken:function(){
-    let githubUsername=store.state.configuration.githubUsername
-    return request({
-      url: '/users/'+githubUsername+'/gists'
-    })
-  },
   list:function(){
     let githubUsername=store.state.configuration.githubUsername
     return request({
