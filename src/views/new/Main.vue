@@ -38,6 +38,7 @@
             this.loading=true
             GistApi.list().then((result)=>{
                 if(!result||result.length==0){
+                    this.loading=false
                     return
                 }
                 for(let key in result[0].files){
