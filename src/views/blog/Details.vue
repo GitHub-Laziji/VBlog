@@ -2,11 +2,26 @@
     <div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="min-height: 400px"  >
             <div slot="header">
-                <span>{{blog.title}}</span>
-                <el-button 
-                style="float: right; padding: 3px 0" 
-                type="text"
-                @click="test">更多博客</el-button>
+                <el-row>
+                    <el-col :span="16">
+                        <span>{{blog.title}}</span>
+                    </el-col>
+                    <el-col :span="8">
+                        <div  style="text-align: right;">
+                            <el-button 
+                            @click="edit"
+                            style="padding: 3px 0" 
+                            type="text"
+                            icon="el-icon-edit"
+                            v-if="token">编辑</el-button>
+                            <el-button 
+                            style=" padding: 3px 0" 
+                            type="text"
+                            icon="el-icon-more-outline"
+                            @click="more">更多博客</el-button>
+                        </div>
+                    </el-col>
+                </el-row> 
             </div>
             <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
                 发布 {{blog.createTime}}<br>
@@ -20,6 +35,7 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
     import GistApi from '@/api/gist'
     export default{
         data(){
@@ -32,6 +48,11 @@
                 },
                 loading:false,
             }
+        },
+        computed: {
+            ...mapGetters([
+                'token',
+            ])
         },
         mounted(){
             this.loading=true
@@ -52,7 +73,17 @@
             
         },
         methods:{
-            test(){
+            edit(){
+                if(!this.token){
+                    this.$message({
+                        message: '请绑定有效的Token',
+                        type: 'warning'
+                    })
+                    return
+                }
+                this.$router.push('/user/blog/edit/'+this.blog.id)
+            },
+            more(){
                 this.$router.push('/user/blog/main')
             }
         }

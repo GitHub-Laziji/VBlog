@@ -3,7 +3,8 @@ const user = {
   state: {
     avatarUrl:null,
     name:null,
-    location:null
+    location:null,
+    blog:null
   },
 
   mutations: {
@@ -15,6 +16,9 @@ const user = {
     },
     SET_LOCATION: (state, value) => {
       state.location = value
+    },
+    SET_BLOG: (state, value) => {
+      state.blog = value
     }
   },
 
@@ -24,6 +28,7 @@ const user = {
         commit('SET_AVATAR_URL',result['avatar_url'])
         commit('SET_NAME',result['name'])
         commit('SET_LOCATION',result['location'])
+        commit('SET_BLOG',result['blog'])
       })
       
     }

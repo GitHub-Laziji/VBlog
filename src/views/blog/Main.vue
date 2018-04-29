@@ -90,6 +90,7 @@
                         data['hide']=false
                         // console.log(data)
                         this.blogs.push(data)
+                        break
                     }
                 }
             }).then(()=>this.loading=false)

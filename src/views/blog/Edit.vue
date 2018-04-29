@@ -10,6 +10,7 @@
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
                     <mavon-editor
+                    @imgAdd="imgAdd"
                     ref="md"
                     v-model="form.content"
                     :subfield="false"
@@ -104,6 +105,9 @@
             }).then(()=>this.loading=false)
         },
         methods:{
+            imgAdd(pos, file){
+                this.$refs.md.$img2Url(pos, file.miniurl)
+            },
             onSubmit(){
                 if(this.token){
                     this.publish()

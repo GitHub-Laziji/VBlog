@@ -7,5 +7,6 @@ const getters = {
   avatarUrl:state => state.user.avatarUrl,
   name:state => state.user.name,
   location:state => state.user.location,
+  blog:state => state.user.blog,
 }
 export default getters

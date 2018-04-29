@@ -25,12 +25,14 @@
             <el-card shadow="never" :body-style="{ padding: '0px' }">
                 <el-row>
                     <el-col :span="18">
-                        <el-menu mode="horizontal" @select="">
-                            <el-submenu index="2">
-                                <template slot="title">更多功能</template>
-                                <el-menu-item index="2-1">功能A</el-menu-item>
-                                <el-menu-item index="2-2">功能B</el-menu-item>
-                                <el-menu-item index="2-3">功能C</el-menu-item> 
+                        <el-menu 
+                        @select="selectTopbar"
+                        :default-active="topbar.active"
+                        mode="horizontal">
+                            <el-submenu index="#more">
+                                <template slot="title">了解博主</template>
+                                <el-menu-item index="#githubHome">github项目主页</el-menu-item>
+                                <el-menu-item index="#blog">其他博客</el-menu-item>
                             </el-submenu>
                         </el-menu>
                     </el-col>
@@ -92,6 +94,9 @@
                 fullButton:{
                     full:false
                 },
+                topbar:{
+                    active:""
+                },
                 randomIcon:[]
             }
         },
@@ -102,7 +107,8 @@
                 'blogDescribe',
                 'avatarUrl',
                 'name',
-                'location'
+                'location',
+                'blog'
             ])
         },
         mounted(){
@@ -116,6 +122,20 @@
             }
         },
         methods:{
+            selectTopbar(index){
+                //取消菜单选中状态
+                this.topbar.active=this.topbar.active==""?" ":""
+                switch(index){
+                    case "#githubHome":
+                        window.open('https://github.com/'+this.githubUsername)
+                        break
+                    case "#blog":
+                        window.open(this.blog)
+                        break
+                    default:
+                        break
+                }
+            },
             moveIcon(index){
                 let width = window.innerWidth
                 this.randomIcon[index]["top"]=this.$util.randomInt(20,300)
