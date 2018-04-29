@@ -23,8 +23,8 @@
 不想下载源码编译的同学 可以直接下载打包好的文件 [https://github.com/GitHub-Laziji/GitHub-Laziji.github.io][2]
 #### 使用
 搭建博客只需2步
-- 1. 下载打包好的文件
-- 2. 修改/static/configuration.json 中的 "github-username" 为自己的github用户名 发布到仓库名为 "${你的用户名}.github.io" 的仓库中
+1. 下载打包好的文件
+2. 修改/static/configuration.json 中的 "github-username" 为自己的github用户名 发布到仓库名为 "${你的用户名}.github.io" 的仓库中
 
 
 类似演示地址其中 GitHub-Laziji 为我的用户名
