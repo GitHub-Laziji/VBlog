@@ -130,7 +130,7 @@
                         window.open('https://github.com/'+this.githubUsername)
                         break
                     case "#blog":
-                        window.open(this.blog)
+                        window.open('http://'+this.blog)
                         break
                     default:
                         break
