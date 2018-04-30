@@ -11,7 +11,11 @@ import BlogAdd from '@/views/blog/Add'
 import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
 
-import Readme from '@/views/Readme'
+import ProjectMain from '@/views/project/Main'
+import ProjectDetails from '@/views/project/Details'
+
+import ReadmeMain from '@/views/readme/Main'
+
 import License from '@/views/License'
 
 Vue.use(Router)
@@ -68,6 +72,28 @@ export const constantRouterMap =  [
         ]
     },
     {
+        path: '/user/project',
+        redirect:'/user/project/main',
+        component:Layout,
+        meta:{
+            type:"user",
+            icon:'el-icon-service',
+            title:'开源项目'
+        },
+        children: [
+            {
+                path: 'main',
+                component: ProjectMain,
+                meta:{ title:'项目列表' }
+            },
+            {
+                path: 'details/:name',
+                component: ProjectDetails,
+                meta:{ title:'项目详情' }
+            }
+        ]
+    },
+    {
         path: '/user/readme',
         redirect:'/user/readme/main',
         component:Layout,
@@ -79,7 +105,7 @@ export const constantRouterMap =  [
         children: [
             {
                 path: 'main',
-                component: Readme,
+                component: ReadmeMain,
                 meta:{ title:'README.md' }
             }
         ]

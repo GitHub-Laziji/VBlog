@@ -13,7 +13,7 @@
             </div>
             <div v-html="blog.content"></div>
         </el-card>
-        <el-card shadow="hover" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blog.id"> 
+        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blog.id"> 
             <font style="font-size: 30px;color:#dddddd "><b>没有更新  ╮(๑•́ ₃•̀๑)╭</b></font>
         </el-card>
     </div>

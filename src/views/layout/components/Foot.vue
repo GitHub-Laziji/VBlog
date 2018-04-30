@@ -10,7 +10,7 @@
 			</el-col>
 			<el-col :span="4">
 				<div style="text-align: center;font-size: 18px">
-					<i class="el-icon-location"></i>
+					<i class="el-icon-location-outline"></i>
 				</div>
 			</el-col>
 			<el-col :span="10">

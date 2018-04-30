@@ -38,7 +38,7 @@
                     </el-col>
                     <el-col :span="4" style="text-align: right;">
                         <div style="font-size: 20px;color:#606266;margin-top: 5px"><b>{{githubUsername}}</b></div>
-                        <div style="color:#606266;"><i class="el-icon-location-outline"></i>&nbsp;{{location?location:'未填写地址'}}<br></div>
+                        <div style="color:#606266;"><i class="el-icon-location"></i>&nbsp;{{location?location:'未填写地址'}}<br></div>
                     </el-col>
                     <el-col :span="2"  style="text-align: center;">
                         <img 
@@ -51,8 +51,8 @@
                         :title="githubUsername"
                         width="200"
                         trigger="hover">
-                        <i class="el-icon-star-off"></i>&emsp;{{name}}<br>
-                        <i class="el-icon-location-outline"></i>&emsp;{{location}}<br>
+                        <i class="el-icon-star-on"></i>&emsp;{{name}}<br>
+                        <i class="el-icon-location"></i>&emsp;{{location}}<br>
                         <img :src="avatarUrl" style="width: 200px;height: 200px;">
                         </el-popover>
                     </el-col>

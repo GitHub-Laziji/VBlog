@@ -21,7 +21,7 @@
                                 <a 
                                 style="text-decoration:none;cursor:pointer" 
                                 @click="goDetails(item.id)">
-                                    <i class="el-icon-tickets"></i>&nbsp;&nbsp;
+                                    <i class="el-icon-edit-outline"></i>&nbsp;&nbsp;
                                     {{item.title}}
                                 </a>
                             </span>
@@ -54,7 +54,7 @@
             </el-card>
         </div>
         
-        <el-card shadow="hover" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blogs||blogs.length==0"> 
+        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blogs||blogs.length==0"> 
             <font style="font-size: 30px;color:#dddddd "><b>还没有博客 (╯°Д°)╯︵ ┻━┻</b></font>
         </el-card>
     </div>
