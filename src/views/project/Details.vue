@@ -31,15 +31,15 @@
             </div>
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 25px 0px;border-bottom: 1px solid #E4E7ED;">
                 <el-tag size="small" type="success">{{project.language}}</el-tag>
-                <el-tooltip effect="dark" content="star" placement="bottom">
+                <el-tooltip effect="dark" :content="'star '+project.stargazersCount" placement="bottom">
                     <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
                 </el-tooltip>
                 {{project.stargazersCount}}
-                <el-tooltip effect="dark" content="watch" placement="bottom">
+                <el-tooltip effect="dark" :content="'watch '+project.watchersCount" placement="bottom">
                     <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
                 </el-tooltip>
                 {{project.watchersCount}}
-                <el-tooltip effect="dark" content="fork" placement="bottom">
+                <el-tooltip effect="dark" :content="'fork '+project.forksCount" placement="bottom">
                     <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
                 </el-tooltip>   
                 {{project.forksCount}}

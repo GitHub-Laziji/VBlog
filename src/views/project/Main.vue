@@ -28,6 +28,11 @@
                         </el-col>
                         <el-col :span="8">
                             <div style="text-align: right;">
+                                <el-button 
+                                @click="goGithub(item.url)"
+                                style="padding: 3px 0" 
+                                type="text"
+                                icon="el-icon-back">前往GitHub</el-button>
                                 <el-button style="padding: 3px 0" type="text" icon="el-icon-share"></el-button>
                             </div>
                         </el-col>
@@ -41,15 +46,15 @@
                 </div>
                 <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
                     <el-tag size="small" type="success">{{item.language}}</el-tag>
-                    <el-tooltip effect="dark" content="star" placement="bottom">
+                    <el-tooltip effect="dark" :content="'star '+item.stargazersCount" placement="bottom">
                         <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
                     </el-tooltip>
                     {{item.stargazersCount}}
-                    <el-tooltip effect="dark" content="watch" placement="bottom">
+                    <el-tooltip effect="dark" :content="'watch '+item.watchersCount" placement="bottom">
                         <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
                     </el-tooltip>
                     {{item.watchersCount}}
-                    <el-tooltip effect="dark" content="fork" placement="bottom">
+                    <el-tooltip effect="dark" :content="'fork '+item.forksCount" placement="bottom">
                         <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
                     </el-tooltip>   
                     {{item.forksCount}}
@@ -109,6 +114,9 @@
             },
             goDetails(name){
                 this.$router.push("/user/project/details/"+name)
+            },
+            goGithub(url){
+                window.open(url)
             }
         }
     }
