@@ -1,4 +1,7 @@
 import Cookie from '@/utils/cookie'
+import UserApi from '@/api/user'
+import store from '../index'
+import Vue from 'vue'
 
 const TOKEN_KEY = "TOKEN_KEY"
 const token = {
@@ -19,7 +22,23 @@ const token = {
 
   actions: {
     Authentication({ commit }, accessToken) {
-      commit('SET_TOKEN',accessToken)
+      UserApi.verifyToken(accessToken).then((result)=>{
+        let githubUsername=store.state.configuration.githubUsername
+        if(githubUsername==result['login']){
+          commit('SET_TOKEN',accessToken)
+          Vue.prototype.$message({
+            message: 'Token绑定成功',
+            type: 'success'
+          })
+        }else{
+          Vue.prototype.$message({
+            message: 'Token用户不一致',
+            type: 'error'
+          })
+        }
+      }).catch(()=>{
+        
+      })
     },
     Cancellation({ commit }) {
       commit('REMOVE_TOKEN')

@@ -16,7 +16,11 @@ import ProjectDetails from '@/views/project/Details'
 
 import ReadmeMain from '@/views/readme/Main'
 
+import ConfigureMain from '@/views/configure/Main'
+
 import License from '@/views/License'
+
+
 
 Vue.use(Router)
 
@@ -116,7 +120,7 @@ export const constantRouterMap =  [
         component:Layout,
         meta:{
             type:"user",
-            icon:'el-icon-setting',
+            icon:'el-icon-news',
             title:'License'
         },
         children: [
@@ -124,6 +128,23 @@ export const constantRouterMap =  [
                 path: 'main',
                 component: License,
                 meta:{ title:'License' }
+            }
+        ]
+    },
+    {
+        path: '/user/configure',
+        redirect:'/user/configure/main',
+        component:Layout,
+        meta:{
+            type:"user",
+            icon:'el-icon-setting',
+            title:'系统配置'
+        },
+        children: [
+            {
+                path: 'main',
+                component: ConfigureMain,
+                meta:{ title:'系统配置' }
             }
         ]
     },

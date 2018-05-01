@@ -2,10 +2,9 @@ import request from '@/utils/request'
 import store from '../store/index'
 
 export default {
-  verifyToken:function(){
-    let githubUsername=store.state.configuration.githubUsername
+  verifyToken:function(token){
     return request({
-      url: '/users/'+githubUsername
+      url: '/user?access_token='+token
     })
   },
   getInfo:function(){
