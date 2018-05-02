@@ -116,7 +116,8 @@
                     if (valid) {
                         this.submitButton.loading=true
                         this.submitButton.disabled=true
-                        GistApi.create(this.form).then((result)=>{
+                        GistApi.create(this.form).then((response)=>{
+                            let result = response.data
                             // console.log(JSON.stringify(result))
                             this.$message({
                                 message: '发表成功',

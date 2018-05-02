@@ -71,7 +71,8 @@
         mounted(){
             this.loading=true
             this.project.name=this.$route.params.name
-            ProjectApi.single(this.project.name).then((result)=>{
+            ProjectApi.single(this.project.name).then((response)=>{
+                let result = response.data
                 let base64 = require('js-base64').Base64
                 this.project.id = result['id']
                 this.project.url = result['html_url']

@@ -19,15 +19,15 @@ export default {
     return new Promise((resolve, reject)=>{
       request({
         url: '/repos/'+githubUsername+'/'+name
-      }).then((result)=>{
+      }).then((response)=>{
         request({
           url: '/repos/'+githubUsername+'/'+name+'/contents/README.md'
         }).then((sr)=>{
-          result['readme_content']=sr['content']
-          resolve(result)
+          response.data['readme_content']=sr.data['content']
+          resolve(response)
         }).catch(()=>{
-          result['readme_content']=""
-          resolve(result)
+          response.data['readme_content']=""
+          resolve(response)
         })
       })
       

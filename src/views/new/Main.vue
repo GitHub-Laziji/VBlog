@@ -23,6 +23,10 @@
     export default{
         data(){
             return {
+                query:{
+                    page:1,
+                    pageSize:1
+                },
                 loading:false,
                 blog:{
                     id:"",
@@ -36,7 +40,8 @@
         },
         mounted(){
             this.loading=true
-            GistApi.list().then((result)=>{
+            GistApi.list(this.query).then((response)=>{
+                let result = response.data
                 if(!result||result.length==0){
                     this.loading=false
                     return
@@ -45,7 +50,8 @@
                     this.blog.id=result[0]['id']
                     break
                 }
-                GistApi.single(this.blog.id).then((result)=>{
+                GistApi.single(this.blog.id).then((response)=>{
+                    let result = response.data
                     for(let key in result.files){
                         this.blog['title']=key
                         this.blog['content']=this.$markdown(result.files[key]['content'])

@@ -85,7 +85,8 @@
         },
         mounted(){
             this.loading=true
-            ProjectApi.list().then((result)=>{
+            ProjectApi.list().then((response)=>{
+                let result = response.data
                 for(let i=0;i<result.length;i++){
                     let item = result[i]
                     let data={}

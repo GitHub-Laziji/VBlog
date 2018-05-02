@@ -56,7 +56,7 @@
             background
             layout="prev, pager, next"
             :page-size="query.pageSize"
-            :total="1000">
+            :total="query.pageNumber*query.pageSize">
             </el-pagination>
         </div>
         
@@ -73,7 +73,8 @@
             return {
                 query:{
                     page:1,
-                    pageSize:5
+                    pageSize:5,
+                    pageNumber:5
                 },
                 loading:false,
                 searchKey:"",
@@ -87,7 +88,11 @@
         },
         mounted(){
             this.loading=true
-            GistApi.list(this.query).then((result)=>{
+            GistApi.list(this.query).then((response)=>{
+                let result = response.data
+                let headers = response.headers
+                let buf = headers['link']
+                console.log(headers)
                 for(let i = 0;i<result.length;i++){
                     for(let key in result[i].files){
                         let data={}

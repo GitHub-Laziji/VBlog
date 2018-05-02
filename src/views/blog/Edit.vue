@@ -95,7 +95,8 @@
         mounted(){
             this.loading=true
             this.form.id=this.$route.params.id
-            GistApi.single(this.form.id).then((result)=>{
+            GistApi.single(this.form.id).then((response)=>{
+                let result = response.data
                 for(let key in result.files){
                     this.form['title']=key
                     this.form['content']=result.files[key]['content']
@@ -122,7 +123,8 @@
                     if (valid) {
                         this.submitButton.loading=true
                         this.submitButton.disabled=true
-                        GistApi.edit(this.form).then((result)=>{
+                        GistApi.edit(this.form).then((response)=>{
+                            let result = response.data
                             // console.log(JSON.stringify(result))
                             this.$message({
                                 message: '发表成功',

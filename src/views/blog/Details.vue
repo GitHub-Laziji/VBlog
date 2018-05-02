@@ -58,7 +58,8 @@
             this.loading=true
             this.blog.id=this.$route.params.id
             // console.log(this.$route.params.id)
-            GistApi.single(this.blog.id).then((result)=>{
+            GistApi.single(this.blog.id).then((response)=>{
+                let result = response.data
                 for(let key in result.files){
                     this.blog['title']=key
                     this.blog['content']=this.$markdown(result.files[key]['content'])
