@@ -13,7 +13,11 @@ service.interceptors.request.use(
   config => {
     let token=store.state.token.token
     if(token){
-      config.url = config.url+"?access_token="+token
+      let sp = "?"
+      if(config.url.indexOf("?")>=0){
+        sp = "&"
+      }
+      config.url = config.url+sp+"access_token="+token
     }
     return config
   }, 
@@ -25,6 +29,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   response => {
+    console.log(response)
     let responseJson = response.data
     return responseJson
   },

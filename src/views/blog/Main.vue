@@ -52,6 +52,12 @@
                     {{item.description}}
                 </div>
             </el-card>
+            <el-pagination
+            background
+            layout="prev, pager, next"
+            :page-size="query.pageSize"
+            :total="1000">
+            </el-pagination>
         </div>
         
         <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blogs||blogs.length==0"> 
@@ -65,6 +71,10 @@
     export default{
         data(){
             return {
+                query:{
+                    page:1,
+                    pageSize:5
+                },
                 loading:false,
                 searchKey:"",
                 blogs:[]
@@ -77,7 +87,7 @@
         },
         mounted(){
             this.loading=true
-            GistApi.list().then((result)=>{
+            GistApi.list(this.query).then((result)=>{
                 for(let i = 0;i<result.length;i++){
                     for(let key in result[i].files){
                         let data={}
