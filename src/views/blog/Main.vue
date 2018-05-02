@@ -8,7 +8,13 @@
             style="margin-left: 10px"
             circle 
             plain></el-button>
-            <el-button icon="el-icon-share" type="warning" plain circle style="margin-left: 10px"></el-button>
+            <el-button 
+            @click="$share()"
+            style="margin-left: 10px"
+            icon="el-icon-share" 
+            type="warning" 
+            plain 
+            circle></el-button>
             <el-button type="primary" icon="el-icon-edit" round plain style="float: right;" @click="goAdd">写博文</el-button>
         </el-card>
         
@@ -28,7 +34,11 @@
                         </el-col>
                         <el-col :span="8">
                             <div style="text-align: right;">
-                                <el-button style="padding: 3px 0" type="text" icon="el-icon-share"></el-button>
+                                <el-button 
+                                @click="$share('/user/blog/details/'+item.id)"
+                                style="padding: 3px 0" 
+                                type="text" 
+                                icon="el-icon-share"></el-button>
                                 <el-button 
                                 @click="editBlog(index)"
                                 style="padding: 3px 0" 
@@ -52,12 +62,17 @@
                     {{item.description}}
                 </div>
             </el-card>
-            <el-pagination
-            background
-            layout="prev, pager, next"
-            :page-size="query.pageSize"
-            :total="query.pageNumber*query.pageSize">
-            </el-pagination>
+            <div style="text-align: center">
+                <el-pagination
+                @current-change="list"
+                background
+                layout="prev, pager, next"
+                :current-page.sync="query.page"
+                :page-size="query.pageSize"
+                :total="query.pageNumber*query.pageSize">
+                </el-pagination>
+            </div>
+            
         </div>
         
         <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blogs||blogs.length==0"> 
@@ -74,7 +89,7 @@
                 query:{
                     page:1,
                     pageSize:5,
-                    pageNumber:5
+                    pageNumber:1
                 },
                 loading:false,
                 searchKey:"",
@@ -87,30 +102,34 @@
             ])
         },
         mounted(){
-            this.loading=true
-            GistApi.list(this.query).then((response)=>{
-                let result = response.data
-                let headers = response.headers
-                let buf = headers['link']
-                console.log(headers)
-                for(let i = 0;i<result.length;i++){
-                    for(let key in result[i].files){
-                        let data={}
-                        data['title']=key
-                        data['url']=result[i].files[key]
-                        data['description']=result[i]['description']
-                        data['id']=result[i]['id']
-                        data['createTime']=this.$util.utcToLocal(result[i]['created_at'])
-                        data['updateTime']=this.$util.utcToLocal(result[i]['updated_at'])
-                        data['hide']=false
-                        // console.log(data)
-                        this.blogs.push(data)
-                        break
-                    }
-                }
-            }).then(()=>this.loading=false)
+            this.list()
         },
         methods:{
+            list(){
+                this.blogs=[]
+                this.loading=true
+                GistApi.list(this.query).then((response)=>{
+                    let result = response.data
+                    let pageNumber = this.$util.parseHeaders(response.headers)
+                    if(pageNumber){
+                        this.query.pageNumber = pageNumber
+                    }
+                    for(let i = 0;i<result.length;i++){
+                        for(let key in result[i].files){
+                            let data={}
+                            data['title']=key
+                            data['url']=result[i].files[key]
+                            data['description']=result[i]['description']
+                            data['id']=result[i]['id']
+                            data['createTime']=this.$util.utcToLocal(result[i]['created_at'])
+                            data['updateTime']=this.$util.utcToLocal(result[i]['updated_at'])
+                            data['hide']=false
+                            this.blogs.push(data)
+                            break
+                        }
+                    }
+                }).then(()=>this.loading=false)
+            },
             search(){
                 for(let i=0;i<this.blogs.length;i++){
                     this.blogs[i].hide=this.blogs[i].title.indexOf(this.searchKey)<0

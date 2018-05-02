@@ -8,7 +8,13 @@
             style="margin-left: 10px"
             circle 
             plain></el-button>
-            <el-button icon="el-icon-share" type="warning" plain circle style="margin-left: 10px"></el-button>
+            <el-button 
+            @click="$share()"
+            icon="el-icon-share" 
+            type="warning" 
+            style="margin-left: 10px"
+            plain 
+            circle></el-button>
             <!-- <el-button type="primary" icon="el-icon-edit" round plain style="float: right;" @click="goAdd">写博文</el-button> -->
         </el-card>
         
@@ -33,7 +39,11 @@
                                 style="padding: 3px 0" 
                                 type="text"
                                 icon="el-icon-back">前往GitHub</el-button>
-                                <el-button style="padding: 3px 0" type="text" icon="el-icon-share"></el-button>
+                                <el-button 
+                                @click="$share('/user/project/details/'+item.name)"
+                                style="padding: 3px 0" 
+                                type="text" 
+                                icon="el-icon-share"></el-button>
                             </div>
                         </el-col>
                     </el-row>
@@ -60,6 +70,16 @@
                     {{item.forksCount}}
                 </div>
             </el-card>
+            <div style="text-align: center">
+                <el-pagination
+                @current-change="list"
+                background
+                layout="prev, pager, next"
+                :current-page.sync="query.page"
+                :page-size="query.pageSize"
+                :total="query.pageNumber*query.pageSize">
+                </el-pagination>
+            </div>
         </div>
         
         <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!projects||projects.length==0"> 
@@ -73,6 +93,11 @@
     export default{
         data(){
             return {
+                query:{
+                    page:1,
+                    pageSize:5,
+                    pageNumber:1
+                },
                 loading:false,
                 searchKey:"",
                 projects:[]
@@ -84,30 +109,35 @@
             ])
         },
         mounted(){
-            this.loading=true
-            ProjectApi.list().then((response)=>{
-                let result = response.data
-                for(let i=0;i<result.length;i++){
-                    let item = result[i]
-                    let data={}
-                    data.id = item['id']
-                    data.name = item['name']
-                    data.url = item['html_url']
-                    data.description = item['description']
-                    data.stargazersCount = item['stargazers_count']
-                    data.watchersCount = item['watchers_count']
-                    data.forksCount = item['forks_count']
-                    data.language = item['language']
-                    data.createTime = this.$util.utcToLocal(item['created_at'])
-                    data.updateTime = this.$util.utcToLocal(item['updated_at'])
-                    
-                    data.hide = false
-                    this.projects.push(data)
-                }
-                
-            }).then(()=>this.loading=false)
+            this.list()
         },
         methods:{
+            list(){
+                this.loading=true
+                ProjectApi.list(this.query).then((response)=>{
+                    let result = response.data
+                    let pageNumber = this.$util.parseHeaders(response.headers)
+                    if(pageNumber){
+                        this.query.pageNumber = pageNumber
+                    }
+                    for(let i=0;i<result.length;i++){
+                        let item = result[i]
+                        let data={}
+                        data.id = item['id']
+                        data.name = item['name']
+                        data.url = item['html_url']
+                        data.description = item['description']
+                        data.stargazersCount = item['stargazers_count']
+                        data.watchersCount = item['watchers_count']
+                        data.forksCount = item['forks_count']
+                        data.language = item['language']
+                        data.createTime = this.$util.utcToLocal(item['created_at'])
+                        data.updateTime = this.$util.utcToLocal(item['updated_at'])
+                        data.hide = false
+                        this.projects.push(data)
+                    }
+                }).then(()=>this.loading=false)
+            },
             search(){
                 for(let i=0;i<this.projects.length;i++){
                     this.projects[i].hide=this.projects[i].name.indexOf(this.searchKey)<0
