@@ -29,7 +29,7 @@
 ### 演示地址
 [https://github-laziji.github.io][1]
 
-![博客截图](https://github.com/GitHub-Laziji/VBlog/raw/master/screenshots/201805040936.png)
+![博客截图](https://github.com/GitHub-Laziji/VBlog/blob/master/screenshots/201805040936.png)
 
 
 ### 快速使用
