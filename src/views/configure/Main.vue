@@ -74,6 +74,7 @@
                             let result = response.data
                             this.configureSha = result.content.sha
                             this.initConfigure = JSON.parse(JSON.stringify(this.configure))
+                            this.$store.dispatch("LocalReload",this.configure)
                             this.$message({
                                 message: '修改成功',
                                 type: 'success'

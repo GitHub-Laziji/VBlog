@@ -6,7 +6,7 @@
             @select="onSelect">
                 <el-menu-item 
                 v-for="item in constantRouterMap"
-                v-if="item.meta&&item.meta.type=='user'"
+                v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)"
                 :key="item.path"
                 :index="item.path">
                     <i :class="item.meta.icon"></i>

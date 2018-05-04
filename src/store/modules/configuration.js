@@ -32,6 +32,9 @@ const configuration = {
   },
 
   actions: {
+    LocalReload({ commit }, configuration) {
+      commit('SET_CONFIGURATION',configuration)
+    },
     Init({ commit }) {
       let xmlhttp
       if (window.XMLHttpRequest){

@@ -138,7 +138,8 @@ export const constantRouterMap =  [
         meta:{
             type:"user",
             icon:'el-icon-setting',
-            title:'系统配置'
+            title:'系统配置',
+            LoginRequired:true
         },
         children: [
             {
