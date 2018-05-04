@@ -1,23 +1,93 @@
 <template>
-    <div>
-        <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center">
-            <font style="font-size: 30px;color:#dddddd "><b>◔ ‸◔？</b></font>
+    <div style="min-height: 800px" v-loading="loading">
+        <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;">
+            <el-form :model="configure" :rules="rules" ref="configureForm" label-width="100px">
+                <el-form-item label="用户名" prop="githubUsername">
+                    <el-input v-model="configure.githubUsername" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="博客标题" prop="blogTitle">
+                    <el-input v-model="configure.blogTitle" :placeholder="configure.githubUsername"></el-input>
+                </el-form-item>
+                <el-form-item label="博客标题" prop="blogDescribe" >
+                    <el-input v-model="configure.blogDescribe" :placeholder="'欢迎来到'+configure.githubUsername+'的个人博客。'"></el-input>
+                </el-form-item>
+                <el-form-item label="博客标题" prop="htmlTitle">
+                    <el-input v-model="configure.htmlTitle"  :placeholder="configure.githubUsername+'的博客'"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button 
+                    @click="submit"
+                    :loading="submitButton.loading"
+                    :disabled="submitButton.disabled"
+                    type="primary">修改配置</el-button>
+                    <el-button @click="reset">还原</el-button>
+                  </el-form-item>
+            </el-form>
         </el-card>
     </div>
 </template>
 <script>
-    
+    import ProjectApi from '@/api/project'
     export default{
         data(){
             return{
-
+                loading:false,
+                configureSha:null,
+                configure:{},
+                initConfigure:{},
+                rules: {
+                    githubUsername: [
+                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ],
+                    blogTitle: [
+                        // { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ],
+                    blogTitle: [
+                        // { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ]
+                },
+                submitButton:{
+                    loading:false,
+                    disabled:false
+                },
             }
         },
         mounted(){
-            
+            this.loading=true
+            ProjectApi.getBlogConfigure().then((response)=>{
+                let result = response.data
+                let base64 = require('js-base64').Base64
+                let text=base64.decode(result.content)
+                this.configure = JSON.parse(text)
+                this.initConfigure = JSON.parse(text)
+                this.configureSha = result.sha
+                // console.log(text)
+            }).then(()=>this.loading=false)
         },
         methods:{
-           
+            submit(){
+                this.$refs['configureForm'].validate((valid) => {
+                    if (valid) {
+                        this.submitButton.loading=true
+                        this.submitButton.disabled=true
+                        ProjectApi.editBlogConfigure(this.configure,this.configureSha).then((response)=>{
+                            let result = response.data
+                            this.configureSha = result.content.sha
+                            this.initConfigure = JSON.parse(JSON.stringify(this.configure))
+                            this.$message({
+                                message: '修改成功',
+                                type: 'success'
+                            })
+                        }).then(()=>{
+                            this.submitButton.loading=false
+                            this.submitButton.disabled=false
+                        })
+                    }
+                })
+            },
+            reset(){
+                this.configure = JSON.parse(JSON.stringify(this.initConfigure))
+            }
         }
     }
 </script>

@@ -8,6 +8,26 @@ export default {
       url: '/repos/'+githubUsername+'/'+githubUsername+'.github.io/contents/README.md'
     })
   },
+  getBlogConfigure:function(){
+    let githubUsername=store.state.configuration.githubUsername
+    return request({
+      url: '/repos/'+githubUsername+'/'+githubUsername+'.github.io/contents/static/configuration.json'
+    })
+  },
+  editBlogConfigure:function(configure,sha){
+    let content = JSON.stringify(configure)
+    let githubUsername=store.state.configuration.githubUsername
+    return request({
+      url: '/repos/'+githubUsername+'/'+githubUsername+'.github.io/contents/static/configuration.json',
+      method: 'PUT',
+      data:{
+        "message": "a",
+        "content": require('js-base64').Base64.encode(content),
+
+        "sha": sha
+      }
+    })
+  },
   list:function(query){
     let githubUsername=store.state.configuration.githubUsername
     return request({

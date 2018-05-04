@@ -9,19 +9,19 @@ const configuration = {
 
   mutations: {
     SET_CONFIGURATION: (state, configuration) => {
-      state.githubUsername = configuration["github-username"]
+      state.githubUsername = configuration["githubUsername"]
       if(!state.githubUsername){
         state.githubUsername="GitHub-Laziji"
       }
-      state.blogTitle = configuration["blog-title"]
+      state.blogTitle = configuration["blogTitle"]
       if(!state.blogTitle){
         state.blogTitle=state.githubUsername
       }
-      state.blogDescribe = configuration["blog-describe"]
+      state.blogDescribe = configuration["blogDescribe"]
       if(!state.blogDescribe){
         state.blogDescribe="欢迎来到"+state.githubUsername+"的个人博客。"
       }
-      state.htmlTitle = configuration["html-title"]
+      state.htmlTitle = configuration["htmlTitle"]
       if(!state.htmlTitle){
         state.htmlTitle=state.githubUsername+"的博客"
       }
