@@ -8,10 +8,10 @@
                 <el-form-item label="博客标题" prop="blogTitle">
                     <el-input v-model="configure.blogTitle" :placeholder="configure.githubUsername"></el-input>
                 </el-form-item>
-                <el-form-item label="博客标题" prop="blogDescribe" >
+                <el-form-item label="博客描述" prop="blogDescribe" >
                     <el-input v-model="configure.blogDescribe" :placeholder="'欢迎来到'+configure.githubUsername+'的个人博客。'"></el-input>
                 </el-form-item>
-                <el-form-item label="博客标题" prop="htmlTitle">
+                <el-form-item label="页面标题" prop="htmlTitle">
                     <el-input v-model="configure.htmlTitle"  :placeholder="configure.githubUsername+'的博客'"></el-input>
                 </el-form-item>
                 <el-form-item>
