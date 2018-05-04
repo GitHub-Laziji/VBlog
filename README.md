@@ -31,7 +31,7 @@
 
 ![博客截图](https://github.com/GitHub-Laziji/VBlog/blob/master/screenshots/201805040936.png)
 
-
+![博客截图](screenshots/201805040936.png)
 ### 快速使用
 搭建博客只需2步
 1. 点击github头像旁边的 "+" 号 选择 "Import repository" 克隆地址填"https://github.com/GitHub-Laziji/GitHub-Laziji.github.io" 项目名填 "${你的用户名}.github.io" 
