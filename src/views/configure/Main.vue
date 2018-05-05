@@ -36,7 +36,11 @@
                     </el-row>
                     
                     <el-form-item label="效果" prop="htmlTitle">
-                        <div :style="'background-image: linear-gradient(120deg, '+configure.backgroundColorLeft+', '+configure.backgroundColorRight+');border-radius: 5px;border: 1px solid #F2F6FC;width:300px;height:100px'"></div>
+                        <div :style="'background-image: linear-gradient(120deg, '+configure.backgroundColorLeft+', '+configure.backgroundColorRight+');border-radius: 5px;border: 1px solid #F2F6FC;width:300px;height:100px;'">
+                            <div :style="'color: '+configure.fontColor+';text-align: center;padding-top:25px;font-size:35px'">
+                                <b>标题</b>
+                            </div>
+                        </div>
                     </el-form-item>
                 </div>
                 <div v-if="configure.useBackgroundImage">
