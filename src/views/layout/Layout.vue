@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="page-header">
+        <section class="page-header" :style="'background-image: linear-gradient(120deg, '+backgroundColorLeft+', '+backgroundColorRight+');color: '+fontColor+';'">
             <div style="position:absolute; top:20px; right:20px; z-index:2;">
                 <el-tooltip effect="dark" :content="fullButton.full?'退出':'全屏'" placement="bottom-end">
                     <el-button 
@@ -108,7 +108,11 @@
                 'avatarUrl',
                 'name',
                 'location',
-                'blog'
+                'blog',
+                'fontColor',
+                'useBackgroundImage',
+                'backgroundColorLeft',
+                'backgroundColorRight'
             ])
         },
         mounted(){

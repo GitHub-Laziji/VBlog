@@ -4,7 +4,11 @@ const configuration = {
     githubUsername:"",
     blogTitle:"",
     blogDescribe:"",
-    htmlTitle:""
+    htmlTitle:"",
+    fontColor:"",
+    useBackgroundImage:false,
+    backgroundColorLeft:"",
+    backgroundColorRight:""
   },
 
   mutations: {
@@ -24,6 +28,23 @@ const configuration = {
       state.htmlTitle = configuration["htmlTitle"]
       if(!state.htmlTitle){
         state.htmlTitle=state.githubUsername+"的博客"
+      }
+
+      state.fontColor = configuration["fontColor"]
+      if(!state.fontColor){
+        state.fontColor="#ffffff"
+      }
+      state.useBackgroundImage = configuration["useBackgroundImage"]
+      if(!state.useBackgroundImage){
+        state.useBackgroundImage=false
+      }
+      state.backgroundColorLeft = configuration["backgroundColorLeft"]
+      if(!state.backgroundColorLeft){
+        state.backgroundColorLeft="#155799"
+      }
+      state.backgroundColorRight = configuration["backgroundColorRight"]
+      if(!state.backgroundColorRight){
+        state.backgroundColorRight="#159957"
       }
     },
     // GET_PARAM:(state, name) => {

@@ -60,7 +60,7 @@
 
 ### 获取Token
 
-在 *github > settings > Developer settings > Personal access tokens*  勾选gist权限 获取Token
+在 *github > settings > Developer settings > Personal access tokens*  勾选gist repo权限 获取Token
 
 
 ## License

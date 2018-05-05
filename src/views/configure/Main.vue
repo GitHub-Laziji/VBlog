@@ -14,6 +14,42 @@
                 <el-form-item label="页面标题" prop="htmlTitle">
                     <el-input v-model="configure.htmlTitle"  :placeholder="configure.githubUsername+'的博客'"></el-input>
                 </el-form-item>
+                <el-form-item label="文字颜色">
+                    <el-color-picker v-model="configure.fontColor"></el-color-picker>
+                </el-form-item>
+                <el-form-item label="使用背景图" >
+                    <el-switch
+                    v-model="configure.useBackgroundImage"></el-switch>
+                </el-form-item>
+                <div v-if="!configure.useBackgroundImage">
+                    <el-row>
+                        <el-col :span="3">
+                            <el-form-item label="背景颜色">
+                                <el-color-picker v-model="configure.backgroundColorLeft"></el-color-picker>
+                            </el-form-item>
+                        </el-col>
+                        <el-col  :span="21">
+                            <el-form-item >
+                                <el-color-picker v-model="configure.backgroundColorRight"></el-color-picker>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    
+                    <el-form-item label="效果" prop="htmlTitle">
+                        <div :style="'background-image: linear-gradient(120deg, '+configure.backgroundColorLeft+', '+configure.backgroundColorRight+');border-radius: 5px;border: 1px solid #F2F6FC;width:300px;height:100px'"></div>
+                    </el-form-item>
+                </div>
+                <div v-if="configure.useBackgroundImage">
+                    <el-form-item label="背景图片">
+                        <el-upload
+                        action=""
+                        :auto-upload="false"
+                        drag>
+                            <i class="el-icon-upload"></i>
+                            <div>将文件拖到此处&nbsp;(暂不支持上传图片)</div>
+                        </el-upload>   
+                    </el-form-item>
+                </div>
                 <el-form-item>
                     <el-button 
                     @click="submit"
@@ -61,7 +97,6 @@
                 this.configure = JSON.parse(text)
                 this.initConfigure = JSON.parse(text)
                 this.configureSha = result.sha
-                // console.log(text)
             }).then(()=>this.loading=false)
         },
         methods:{

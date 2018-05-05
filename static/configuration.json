@@ -2,5 +2,9 @@
     "githubUsername":"GitHub-Laziji",
     "blogTitle":"Laziji",
     "blogDescribe":"欢迎来到辣子鸡的个人博客。",
-    "htmlTitle":"辣子鸡的博客"
+    "htmlTitle":"辣子鸡的博客",
+    "fontColor":"#ffffff",
+    "useBackgroundImage":false,
+    "backgroundColorLeft":"#E74949",
+    "backgroundColorRight":"#F1E45C"
 }
