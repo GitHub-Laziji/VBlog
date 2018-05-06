@@ -14,12 +14,16 @@
                 <el-form-item label="页面标题" prop="htmlTitle">
                     <el-input v-model="configure.htmlTitle"  :placeholder="configure.githubUsername+'的博客'"></el-input>
                 </el-form-item>
-                <el-form-item label="文字颜色">
-                    <el-color-picker v-model="configure.fontColor"></el-color-picker>
+                <el-form-item label="极简模式" >
+                    <el-switch
+                    v-model="configure.mini"></el-switch>
                 </el-form-item>
                 <el-form-item label="使用背景图" >
                     <el-switch
                     v-model="configure.useBackgroundImage"></el-switch>
+                </el-form-item>
+                <el-form-item label="文字颜色">
+                    <el-color-picker v-model="configure.fontColor"></el-color-picker>
                 </el-form-item>
                 <div v-if="!configure.useBackgroundImage">
                     <el-row>
