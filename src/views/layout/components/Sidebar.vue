@@ -6,7 +6,7 @@
             @select="onSelect">
                 <el-menu-item 
                 v-for="item in constantRouterMap"
-                v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)"
+                v-if="item.meta&&item.meta.type=='user'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)"
                 :key="item.path"
                 :index="item.path">
                     <i :class="item.meta.icon"></i>
@@ -58,7 +58,8 @@
         computed: {
             ...mapGetters([
                 'token',
-                'githubUsername'
+                'githubUsername',
+                'mini'
             ])
         },
         mounted(){

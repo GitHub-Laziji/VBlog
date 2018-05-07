@@ -8,10 +8,13 @@ const getters = {
   useBackgroundImage:state => state.configuration.useBackgroundImage,
   backgroundColorLeft:state => state.configuration.backgroundColorLeft,
   backgroundColorRight:state => state.configuration.backgroundColorRight,
+  audioUrl:state => state.configuration.audioUrl,
+  mini:state => state.configuration.mini,
   avatarUrl:state => state.user.avatarUrl,
   name:state => state.user.name,
   location:state => state.user.location,
   blog:state => state.user.blog,
+  
   
 }
 export default getters

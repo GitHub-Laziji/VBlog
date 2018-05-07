@@ -8,7 +8,9 @@ const configuration = {
     fontColor:"",
     useBackgroundImage:false,
     backgroundColorLeft:"",
-    backgroundColorRight:""
+    backgroundColorRight:"",
+    audioUrl:"",
+    mini:false
   },
 
   mutations: {
@@ -45,6 +47,16 @@ const configuration = {
       state.backgroundColorRight = configuration["backgroundColorRight"]
       if(!state.backgroundColorRight){
         state.backgroundColorRight="#159957"
+      }
+
+      state.audioUrl = configuration["audioUrl"]
+      if(!state.audioUrl){
+        state.audioUrl="http://sc1.111ttt.cn:8282/2018/1/03m/13/396131232171.m4a?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97#.mp3"
+      }
+
+      state.mini = configuration["mini"]
+      if(!state.mini){
+        state.mini=false
       }
     },
     // GET_PARAM:(state, name) => {

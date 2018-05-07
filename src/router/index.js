@@ -121,7 +121,8 @@ export const constantRouterMap =  [
         meta:{
             type:"user",
             icon:'el-icon-news',
-            title:'License'
+            title:'License',
+            mini:true
         },
         children: [
             {
