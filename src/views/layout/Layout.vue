@@ -40,7 +40,7 @@
                         <el-row>
                             <el-col :span="4">
                                 <el-popover
-                                placement="top-start"
+                                placement="top"
                                 trigger="hover">
                                 <div style="text-align: center">
                                     <el-progress 

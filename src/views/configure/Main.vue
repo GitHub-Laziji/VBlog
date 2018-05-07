@@ -12,7 +12,10 @@
                     <el-input v-model="configure.blogDescribe" :placeholder="'欢迎来到'+configure.githubUsername+'的个人博客。'"></el-input>
                 </el-form-item>
                 <el-form-item label="页面标题" prop="htmlTitle">
-                    <el-input v-model="configure.htmlTitle"  :placeholder="configure.githubUsername+'的博客'"></el-input>
+                    <el-input v-model="configure.htmlTitle" :placeholder="configure.githubUsername+'的博客'"></el-input>
+                </el-form-item>
+                <el-form-item label="音乐链接" prop="audioUrl">
+                    <el-input v-model="configure.audioUrl" placeholder="背景音乐链接"></el-input>
                 </el-form-item>
                 <el-form-item label="极简模式" >
                     <el-switch
