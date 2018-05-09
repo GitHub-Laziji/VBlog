@@ -2,14 +2,19 @@ import Vue from 'vue'
 import App from './App'
 import util from './utils/util'
 import router from './router'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 import mavonEditor from 'mavon-editor' 
 import 'mavon-editor/dist/css/index.css'
 import store from './store'
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
 Vue.use(ElementUI)
 Vue.use(mavonEditor)
+Vue.use(MintUI)
 
 Vue.prototype.$markdown = function(value){
 	return mavonEditor.markdownIt.render(value)

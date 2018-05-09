@@ -20,6 +20,11 @@ import ConfigureMain from '@/views/configure/Main'
 
 import License from '@/views/License'
 
+import MobileLayout from '@/mobile_views/layout/Layout'
+import MobileBlogMain from '@/mobile_views/blog/Main'
+import MobileProjectMain from '@/mobile_views/project/Main'
+import MobileSelfMain from '@/mobile_views/self/Main'
+
 
 
 Vue.use(Router)
@@ -164,8 +169,63 @@ export const constantRouterMap =  [
     { 
         path: "*", 
         redirect: "/404"
-    }
+    },
+
+    //mobile
+    {
+        path: '/mobile/user/blog',
+        redirect:'/mobile/user/blog/main',
+        component:MobileLayout,
+        meta:{
+            type:"mobile",
+            icon:'el-icon-setting',
+            title:'博客'
+        },
+        children: [
+            {
+                path: 'main',
+                component: MobileBlogMain
+            }
+        ]
+        
+    },
+    {
+        path: '/mobile/user/project',
+        redirect:'/mobile/user/project/main',
+        component:MobileLayout,
+        meta:{
+            type:"mobile",
+            icon:'el-icon-setting',
+            title:'项目'
+        },
+        children: [
+            {
+                path: 'main',
+                component: MobileProjectMain
+            }
+        ]
+        
+    },
+    {
+        path: '/mobile/user/self',
+        redirect:'/mobile/user/self/main',
+        component:MobileLayout,
+        meta:{
+            type:"mobile",
+            icon:'el-icon-setting',
+            title:'个人'
+        },
+        children: [
+            {
+                path: 'main',
+                component: MobileSelfMain
+            }
+        ]
+        
+    },
 ]
+
+
 
 
 const router = new Router({

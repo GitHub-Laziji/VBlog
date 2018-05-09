@@ -34,6 +34,11 @@
                                 <el-menu-item index="#githubHome">github项目主页</el-menu-item>
                                 <el-menu-item index="#blog">其他博客</el-menu-item>
                             </el-submenu>
+                            <el-submenu index="#social">
+                                <template slot="title">社交信息</template>
+                                <el-menu-item index="#followers">粉丝&nbsp;&nbsp;{{followers}}</el-menu-item>
+                                <el-menu-item index="#following">关注&nbsp;&nbsp;{{following}}</el-menu-item>
+                            </el-submenu>
                         </el-menu>
                     </el-col>
                     <el-col :span="8" style="text-align: center;padding: 12px 0px 0px 10px">
@@ -165,7 +170,9 @@
                 'backgroundColorLeft',
                 'backgroundColorRight',
                 'audioUrl',
-                'mini'
+                'mini',
+                'followers',
+                'following'
             ])
         },
         watch:{

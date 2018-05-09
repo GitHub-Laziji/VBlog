@@ -20,6 +20,7 @@
     "js-cookie": "2.2.0",
     "js-sha1": "^0.6.0",
     "mavon-editor": "^2.5.2",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-sticky": "^3.3.3",
