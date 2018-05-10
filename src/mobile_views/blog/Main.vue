@@ -1,17 +1,23 @@
 <template>
-    <div>
-        <mt-header title="博客">
-            <mt-button icon="more" slot="right"></mt-button>
-        </mt-header>
-
-        <mt-cell
+    <div style="background: #F2F6FC;min-height: 1000px">
+        <van-nav-bar
+        style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -5px 10px #888888;width: 100%;"
+        title="博客"/>
+        <div style="height: 60px;"></div>
+        <van-panel 
+        @click="test"
         v-for="(item,index) in blogs" 
+        style="margin-bottom: 5px"
         :key="'p'+index"
         :title="item.title"
-
-        is-link
-        :label="$util.cutStr(item.description,20)">
-        </mt-cell>
+        :desc="'更新时间 '+item.updateTime" >
+            <div style="padding: 0px 12px 5px 12px;color: #606266;font-size: 0.9rem">{{item.description}}</div>
+            <!-- <div slot="footer">
+                  <van-button size="small">按钮</van-button>
+                  <van-button size="small" type="danger">按钮</van-button>
+            </div> -->
+        </van-panel>
+        <div style="height: 100px;"></div>
           
 
         
@@ -34,20 +40,26 @@
             }
         },
         mounted(){
+            this.$toast({
+                message:'移动端开发中... 请在电脑上打开',
+                duration: 5000
+            })
             this.list()
         },
         methods:{
+            test(){
+
+            },
             list(){
-                this.$indicator.open({
-                    text: '加载中...',
-                    spinnerType: 'fading-circle'
-                })
-                this.blogs=[]
                 GistApi.list(this.query).then((response)=>{
                     let result = response.data
                     let pageNumber = this.$util.parseHeaders(response.headers)
                     if(pageNumber){
                         this.query.pageNumber = pageNumber
+                    }
+                    if(result.length==0){
+
+                        return
                     }
                     for(let i = 0;i<result.length;i++){
                         for(let key in result[i].files){
@@ -63,12 +75,7 @@
                             break
                         }
                     }
-                }).then(()=>{
-                    this.$indicator.close()
-                    this.$toast({
-                        message:'移动端开发中... 请在电脑上打开',
-                        duration: 5000
-                    })
+                    // this.query.page++
                 })
             },
             search(){
@@ -76,6 +83,7 @@
                     this.blogs[i].hide=this.blogs[i].title.indexOf(this.searchKey)<0
                 }
             },
+
         }
     }
 </script>

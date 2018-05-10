@@ -1,7 +1,7 @@
 <template>
     <div>
         <app-main></app-main>
-        <bottombar></bottombar>
+        <bottombar style="position:fixed;bottom:0;"></bottombar>
     </div>
 </template>
 
