@@ -178,7 +178,7 @@ export const constantRouterMap =  [
         component:MobileLayout,
         meta:{
             type:"mobile",
-            icon:'el-icon-setting',
+            icon:'el-icon-edit-outline',
             title:'博客'
         },
         children: [
@@ -195,7 +195,7 @@ export const constantRouterMap =  [
         component:MobileLayout,
         meta:{
             type:"mobile",
-            icon:'el-icon-setting',
+            icon:'el-icon-service',
             title:'项目'
         },
         children: [
@@ -212,7 +212,7 @@ export const constantRouterMap =  [
         component:MobileLayout,
         meta:{
             type:"mobile",
-            icon:'el-icon-setting',
+            icon:'el-icon-mobile-phone',
             title:'个人'
         },
         children: [

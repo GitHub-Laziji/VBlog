@@ -6,7 +6,9 @@
             v-if="item.meta&&item.meta.type=='mobile'&&(token||!item.meta.LoginRequired)&&(!mini||!item.meta.mini)"
             :id="item.path"
             :key="item.path">
-                <img slot="icon" src="">
+                <div style="font-size: 22px;padding: 3px">
+                    <i :class="item.meta.icon" ></i>
+                </div>
                 {{item.meta.title}}
             </mt-tab-item>
             
