@@ -22,7 +22,10 @@ import License from '@/views/License'
 
 import MobileLayout from '@/mobile_views/layout/Layout'
 import MobileBlogMain from '@/mobile_views/blog/Main'
+import MobileBlogDetails from '@/mobile_views/blog/Details'
 import MobileProjectMain from '@/mobile_views/project/Main'
+import MobileProjectDetails from '@/mobile_views/project/Details'
+
 import MobileSelfMain from '@/mobile_views/self/Main'
 
 
@@ -185,6 +188,10 @@ export const constantRouterMap =  [
             {
                 path: 'main',
                 component: MobileBlogMain
+            },
+            {
+                path: 'details/:id',
+                component: MobileBlogDetails
             }
         ]
         
@@ -202,6 +209,10 @@ export const constantRouterMap =  [
             {
                 path: 'main',
                 component: MobileProjectMain
+            },
+            {
+                path: 'details/:name',
+                component: MobileProjectDetails
             }
         ]
         

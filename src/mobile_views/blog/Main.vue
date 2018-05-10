@@ -1,27 +1,19 @@
 <template>
     <div style="background: #F2F6FC;min-height: 1000px">
         <van-nav-bar
-        style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -5px 10px #888888;width: 100%;"
-        title="博客"/>
+        style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;"
+        title="博客列表"/>
         <div style="height: 60px;"></div>
-        <van-panel 
-        @click="test"
-        v-for="(item,index) in blogs" 
-        style="margin-bottom: 5px"
-        :key="'p'+index"
-        :title="item.title"
-        :desc="'更新时间 '+item.updateTime" >
-            <div style="padding: 0px 12px 5px 12px;color: #606266;font-size: 0.9rem">{{item.description}}</div>
-            <!-- <div slot="footer">
-                  <van-button size="small">按钮</van-button>
-                  <van-button size="small" type="danger">按钮</van-button>
-            </div> -->
-        </van-panel>
+        <router-link :to="`/mobile/user/blog/details/${item.id}`" v-for="(item,index) in blogs" :key="'p'+index">
+            <van-panel 
+            style="margin-bottom: 5px"
+            :title="item.title"
+            :desc="'更新时间 '+item.updateTime" >
+                <div style="padding: 0px 15px 5px 15px;color: #606266;font-size: 0.9rem">{{item.description}}</div>
+            </van-panel>
+        </router-link>
         <div style="height: 100px;"></div>
-          
-
-        
-            
+    
     </div>
 </template>
 
@@ -40,10 +32,7 @@
             }
         },
         mounted(){
-            this.$toast({
-                message:'移动端开发中... 请在电脑上打开',
-                duration: 5000
-            })
+            
             this.list()
         },
         methods:{
@@ -51,6 +40,11 @@
 
             },
             list(){
+                this.$toast.loading({
+                    duration: 0,
+                    forbidClick: true,
+                    message: '加载中'
+                })
                 GistApi.list(this.query).then((response)=>{
                     let result = response.data
                     let pageNumber = this.$util.parseHeaders(response.headers)
@@ -76,14 +70,17 @@
                         }
                     }
                     // this.query.page++
-                })
+                }).then(()=>this.$toast.clear())
             },
             search(){
                 for(let i=0;i<this.blogs.length;i++){
                     this.blogs[i].hide=this.blogs[i].title.indexOf(this.searchKey)<0
                 }
             },
-
+            goDetails(id){
+                console.log(id)
+                this.$router.push(""+id)
+            }
         }
     }
 </script>
