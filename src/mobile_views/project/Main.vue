@@ -1,6 +1,7 @@
 <template>
     <div style="background: #F2F6FC;min-height: 700px">
-        <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;" title="开源项目" />
+        <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;" title="开源项目" right-text="分享"
+            @click-right="$mobileShare()" />
         <div style="height: 60px;"></div>
         <router-link :to="`/mobile/user/project/details/${item.name}`" v-for="(item,index) in projects" :key="'p'+index">
             <van-panel style="margin-bottom: 5px" :title="item.name" :desc="'更新时间 '+item.updateTime">
@@ -8,6 +9,7 @@
                 <div style="padding: 0px 15px 5px 15px;color: #606266;">
                     <van-icon name="points" />&nbsp;{{item.stargazersCount}}&emsp;
                     <van-icon name="exchange" />&nbsp;{{item.forksCount}}
+                    <van-tag mark type="primary" style="float: right;">{{item.language}}</van-tag>
                 </div>
             </van-panel>
         </router-link>

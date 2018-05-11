@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -5px 10px #888888;width: 100%;" :title="blog.title"
-            left-text="返回" right-text="分享" @click-left="$router.go(-1)" @click-right="" left-arrow/>
+            left-text="返回" right-text="分享" @click-left="$router.go(-1)" @click-right="$mobileShare()" left-arrow/>
         <div style="height: 60px;"></div>
         <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;padding: 10px">
             发布 {{blog.createTime}}
@@ -51,7 +51,7 @@
             }).then(() => this.$toast.clear())
         },
         methods: {
-
+            
         }
 
     }

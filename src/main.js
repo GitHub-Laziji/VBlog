@@ -56,6 +56,26 @@ Vue.prototype.$share = function (message) {
     }
 }
 
+Vue.prototype.$mobileShare = function (message) {
+    if (!message) {
+        message = window.location
+    } else {
+        let arr = (window.location + "").split("#")
+        message = arr[0] + "#" + message
+    }
+    if (util.copy(message)) {
+        Vue.prototype.$dialog.alert({
+            title: '分享',
+            message: '链接已复制,去分享给好友吧!!'
+        })
+    } else {
+        Vue.prototype.$dialog.alert({
+            title: '分享',
+            message: '链接复制失败,可能因为浏览器不兼容'
+        })
+    }
+}
+
 
 
 Vue.prototype.$util = util

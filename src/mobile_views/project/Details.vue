@@ -1,7 +1,7 @@
 <template>
     <div>
         <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -5px 10px #888888;width: 100%;" :title="project.name"
-            left-text="返回" right-text="分享" @click-left="$router.go(-1)" @click-right="" left-arrow/>
+            left-text="返回" right-text="分享" @click-left="$router.go(-1)" @click-right="$mobileShare()" left-arrow/>
         <div style="height: 60px;"></div>
         <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;padding: 10px">
             发布 {{project.createTime}}
@@ -13,6 +13,7 @@
         <div style="padding: 0px 15px 5px 15px;color: #606266;border-bottom: 1px solid #E4E7ED;">
             <van-icon name="points" />&nbsp;{{project.stargazersCount}}&emsp;
             <van-icon name="exchange" />&nbsp;{{project.forksCount}}
+            <van-tag mark type="primary" style="float: right;">{{project.language}}</van-tag>
         </div>
         <div v-html="project.content" class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
