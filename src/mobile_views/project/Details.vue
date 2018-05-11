@@ -20,7 +20,7 @@
             <van-icon name="points"/>&nbsp;{{project.stargazersCount}}&emsp;
             <van-icon name="exchange"/>&nbsp;{{project.forksCount}}
         </div>
-        <div v-html="project.content" class="vblog-markdown" style="padding: 10px"></div>
+        <div v-html="project.content"  class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
     </div>
 </template>

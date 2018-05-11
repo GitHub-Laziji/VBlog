@@ -16,7 +16,7 @@
         <div style="font-size: 1.0rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 10px">
             {{blog.description}}
         </div>
-        <div v-html="blog.content" class="vblog-markdown" style="padding: 10px"></div>
+        <div v-html="blog.content"  class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
     </div>
 </template>
@@ -62,10 +62,3 @@
         
     }
 </script>
-<style>
-
-.vblog-markdown img{
-    max-width: 100%;
-}
-
-</style>

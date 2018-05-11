@@ -44,7 +44,7 @@
                 </el-tooltip>   
                 {{project.forksCount}}
             </div>
-            <div v-html="project.content" v-if="project.content"></div>
+            <div v-html="project.content" v-if="project.content"  class="markdown-body"  style="padding-top: 20px"></div>
             <div v-if="!project.content" style="padding: 20px 0px 20px 0px;text-align: center">
                 <font style="font-size: 30px;color:#dddddd "><b>还没有介绍 (╯°Д°)╯︵ ┻━┻</b></font>
             </div>

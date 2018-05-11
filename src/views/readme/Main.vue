@@ -1,7 +1,7 @@
 <template>
         <div style="min-height: 800px" v-loading="loading">
             <el-card shadow="never">
-                <div v-html="$markdown(text)"></div>
+                <div v-html="$markdown(text)" class="markdown-body" ></div>
             </el-card>
         </div>
     </template>
