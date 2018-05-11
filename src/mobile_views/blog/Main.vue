@@ -1,5 +1,5 @@
 <template>
-    <div style="background: #F2F6FC;min-height: 1000px">
+    <div style="background: #F2F6FC;min-height: 700px">
         <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;" title="博客列表" />
         <div style="height: 60px;"></div>
         <router-link :to="`/mobile/user/blog/details/${item.id}`" v-for="(item,index) in blogs" :key="'p'+index">

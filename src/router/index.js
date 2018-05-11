@@ -187,11 +187,17 @@ export const constantRouterMap = [
         children: [
             {
                 path: 'main',
-                component: MobileBlogMain
+                component: MobileBlogMain,
+                meta:{
+                    scrollTop:true
+                }
             },
             {
                 path: 'details/:id',
-                component: MobileBlogDetails
+                component: MobileBlogDetails,
+                meta:{
+                    scrollTop:true
+                }
             }
         ]
 
@@ -208,11 +214,17 @@ export const constantRouterMap = [
         children: [
             {
                 path: 'main',
-                component: MobileProjectMain
+                component: MobileProjectMain,
+                meta:{
+                    scrollTop:true
+                }
             },
             {
                 path: 'details/:name',
-                component: MobileProjectDetails
+                component: MobileProjectDetails,
+                meta:{
+                    scrollTop:true
+                }
             }
         ]
 
@@ -229,7 +241,10 @@ export const constantRouterMap = [
         children: [
             {
                 path: 'main',
-                component: MobileSelfMain
+                component: MobileSelfMain,
+                meta:{
+                    scrollTop:true
+                }
             }
         ]
 
@@ -240,7 +255,12 @@ export const constantRouterMap = [
 
 
 const router = new Router({
-    routes: constantRouterMap
+    routes: constantRouterMap,
+    scrollBehavior (to, from, savedPosition) {
+        if(to.meta.scrollTop){
+            return { x: 0, y: 0 }
+        }
+    }
 })
 
 router.beforeEach((to, from, next) => {
