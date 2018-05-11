@@ -1,5 +1,8 @@
 # VBlog
 
+## 演示地址
+[https://github-laziji.github.io][1]
+
 ## 2018.5.11 更新
 - 移动端增加博客, 项目, 个人中心, 移动端和PC端共用API, 页面独立 
 - 修复文章样式奇怪的BUG
@@ -40,10 +43,10 @@
 - [x] 改进传统 GitHub Pages 不能动态发布的缺陷
 - [x] 使用vue单页面
 
-### 演示地址
-[https://github-laziji.github.io][1]
+### 效果
 
 ![博客截图](screenshots/201805051931.png)
+![博客截图](screenshots/201805111431.png)
 ![博客截图](screenshots/201805040936.png)
 
 ### 快速使用
