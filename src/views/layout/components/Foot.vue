@@ -18,21 +18,21 @@
 					<a href="https://developer.github.com" target="_blank">GitHub-API</a>&emsp;&emsp;
 					<a href="https://cn.vuejs.org/" target="_blank">Vue.js</a>&emsp;&emsp;
 					<a href="http://element.eleme.io/" target="_blank">Element</a>
-					
+
 				</div>
 			</el-col>
 		</el-row>
 	</div>
 </template>
 <script>
-export default{
-	data(){
-		return {
-		
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+
 		}
-	},
-	methods:{
-	
 	}
-}
 </script>

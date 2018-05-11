@@ -9,7 +9,7 @@
     import { mapGetters } from 'vuex'
     import Bottombar from './components/Bottombar'
     import AppMain from './components/AppMain'
-    export default{
+    export default {
         components: {
             Bottombar,
             AppMain

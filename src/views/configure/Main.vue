@@ -8,7 +8,7 @@
                 <el-form-item label="博客标题" prop="blogTitle">
                     <el-input v-model="configure.blogTitle" :placeholder="configure.githubUsername"></el-input>
                 </el-form-item>
-                <el-form-item label="博客描述" prop="blogDescribe" >
+                <el-form-item label="博客描述" prop="blogDescribe">
                     <el-input v-model="configure.blogDescribe" :placeholder="'欢迎来到'+configure.githubUsername+'的个人博客。'"></el-input>
                 </el-form-item>
                 <el-form-item label="页面标题" prop="htmlTitle">
@@ -17,13 +17,11 @@
                 <el-form-item label="音乐链接" prop="audioUrl">
                     <el-input v-model="configure.audioUrl" placeholder="背景音乐链接"></el-input>
                 </el-form-item>
-                <el-form-item label="极简模式" >
-                    <el-switch
-                    v-model="configure.mini"></el-switch>
+                <el-form-item label="极简模式">
+                    <el-switch v-model="configure.mini"></el-switch>
                 </el-form-item>
-                <el-form-item label="使用背景图" >
-                    <el-switch
-                    v-model="configure.useBackgroundImage"></el-switch>
+                <el-form-item label="使用背景图">
+                    <el-switch v-model="configure.useBackgroundImage"></el-switch>
                 </el-form-item>
                 <el-form-item label="文字颜色">
                     <el-color-picker v-model="configure.fontColor"></el-color-picker>
@@ -35,13 +33,13 @@
                                 <el-color-picker v-model="configure.backgroundColorLeft"></el-color-picker>
                             </el-form-item>
                         </el-col>
-                        <el-col  :span="21">
-                            <el-form-item >
+                        <el-col :span="21">
+                            <el-form-item>
                                 <el-color-picker v-model="configure.backgroundColorRight"></el-color-picker>
                             </el-form-item>
                         </el-col>
                     </el-row>
-                    
+
                     <el-form-item label="效果" prop="htmlTitle">
                         <div :style="'background-image: linear-gradient(120deg, '+configure.backgroundColorLeft+', '+configure.backgroundColorRight+');border-radius: 5px;border: 1px solid #F2F6FC;width:300px;height:100px;'">
                             <div :style="'color: '+configure.fontColor+';text-align: center;padding-top:25px;font-size:35px'">
@@ -52,36 +50,29 @@
                 </div>
                 <div v-if="configure.useBackgroundImage">
                     <el-form-item label="背景图片">
-                        <el-upload
-                        action=""
-                        :auto-upload="false"
-                        drag>
+                        <el-upload action="" :auto-upload="false" drag>
                             <i class="el-icon-upload"></i>
                             <div>将文件拖到此处&nbsp;(暂不支持上传图片)</div>
-                        </el-upload>   
+                        </el-upload>
                     </el-form-item>
                 </div>
                 <el-form-item>
-                    <el-button 
-                    @click="submit"
-                    :loading="submitButton.loading"
-                    :disabled="submitButton.disabled"
-                    type="primary">修改配置</el-button>
+                    <el-button @click="submit" :loading="submitButton.loading" :disabled="submitButton.disabled" type="primary">修改配置</el-button>
                     <el-button @click="reset">还原</el-button>
-                  </el-form-item>
+                </el-form-item>
             </el-form>
         </el-card>
     </div>
 </template>
 <script>
     import ProjectApi from '@/api/project'
-    export default{
-        data(){
-            return{
-                loading:false,
-                configureSha:null,
-                configure:{},
-                initConfigure:{},
+    export default {
+        data() {
+            return {
+                loading: false,
+                configureSha: null,
+                configure: {},
+                initConfigure: {},
                 rules: {
                     githubUsername: [
                         { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -93,46 +84,46 @@
                         // { required: true, message: '请输入用户名', trigger: 'blur' },
                     ]
                 },
-                submitButton:{
-                    loading:false,
-                    disabled:false
+                submitButton: {
+                    loading: false,
+                    disabled: false
                 },
             }
         },
-        mounted(){
-            this.loading=true
-            ProjectApi.getBlogConfigure().then((response)=>{
+        mounted() {
+            this.loading = true
+            ProjectApi.getBlogConfigure().then((response) => {
                 let result = response.data
                 let base64 = require('js-base64').Base64
-                let text=base64.decode(result.content)
+                let text = base64.decode(result.content)
                 this.configure = JSON.parse(text)
                 this.initConfigure = JSON.parse(text)
                 this.configureSha = result.sha
-            }).then(()=>this.loading=false)
+            }).then(() => this.loading = false)
         },
-        methods:{
-            submit(){
+        methods: {
+            submit() {
                 this.$refs['configureForm'].validate((valid) => {
                     if (valid) {
-                        this.submitButton.loading=true
-                        this.submitButton.disabled=true
-                        ProjectApi.editBlogConfigure(this.configure,this.configureSha).then((response)=>{
+                        this.submitButton.loading = true
+                        this.submitButton.disabled = true
+                        ProjectApi.editBlogConfigure(this.configure, this.configureSha).then((response) => {
                             let result = response.data
                             this.configureSha = result.content.sha
                             this.initConfigure = JSON.parse(JSON.stringify(this.configure))
-                            this.$store.dispatch("LocalReload",this.configure)
+                            this.$store.dispatch("LocalReload", this.configure)
                             this.$message({
                                 message: '修改成功',
                                 type: 'success'
                             })
-                        }).then(()=>{
-                            this.submitButton.loading=false
-                            this.submitButton.disabled=false
+                        }).then(() => {
+                            this.submitButton.loading = false
+                            this.submitButton.disabled = false
                         })
                     }
                 })
             },
-            reset(){
+            reset() {
                 this.configure = JSON.parse(JSON.stringify(this.initConfigure))
             }
         }

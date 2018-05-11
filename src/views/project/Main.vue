@@ -1,49 +1,26 @@
 <template>
     <div style="min-height: 600px" v-loading="loading">
         <el-card shadow="never" style="margin-bottom: 20px">
-            <el-input placeholder="请输入关键字" v-model="searchKey" clearable style="width: 300px" ></el-input>
-            <el-button 
-            @click="search"
-            icon="el-icon-search" 
-            style="margin-left: 10px"
-            circle 
-            plain></el-button>
-            <el-button 
-            @click="$share()"
-            icon="el-icon-share" 
-            type="warning" 
-            style="margin-left: 10px"
-            plain 
-            circle></el-button>
-            <!-- <el-button type="primary" icon="el-icon-edit" round plain style="float: right;" @click="goAdd">写博文</el-button> -->
+            <el-input placeholder="请输入关键字" v-model="searchKey" clearable style="width: 300px"></el-input>
+            <el-button @click="search" icon="el-icon-search" style="margin-left: 10px" circle plain></el-button>
+            <el-button @click="$share()" icon="el-icon-share" type="warning" style="margin-left: 10px" plain circle></el-button>
         </el-card>
-        
+
         <div v-if="projects&&projects.length>0">
             <el-card shadow="hover" v-for="(item,index) in projects" :key="'pro'+index" style="margin-bottom: 20px" v-if="!item.hide">
-                <div slot="header" >
+                <div slot="header">
                     <el-row>
                         <el-col :span="16">
                             <span>
-                                <a 
-                                style="text-decoration:none;cursor:pointer" 
-                                @click="goDetails(item.name)">
-                                    <i class="el-icon-service"></i>&nbsp;&nbsp;
-                                    {{item.name}}
+                                <a style="text-decoration:none;cursor:pointer" @click="goDetails(item.name)">
+                                    <i class="el-icon-service"></i>&nbsp;&nbsp; {{item.name}}
                                 </a>
                             </span>
                         </el-col>
                         <el-col :span="8">
                             <div style="text-align: right;">
-                                <el-button 
-                                @click="goGithub(item.url)"
-                                style="padding: 3px 0" 
-                                type="text"
-                                icon="el-icon-back">前往GitHub</el-button>
-                                <el-button 
-                                @click="$share('/user/project/details/'+item.name)"
-                                style="padding: 3px 0" 
-                                type="text" 
-                                icon="el-icon-share"></el-button>
+                                <el-button @click="goGithub(item.url)" style="padding: 3px 0" type="text" icon="el-icon-back">前往GitHub</el-button>
+                                <el-button @click="$share('/user/project/details/'+item.name)" style="padding: 3px 0" type="text" icon="el-icon-share"></el-button>
                             </div>
                         </el-col>
                     </el-row>
@@ -66,41 +43,38 @@
                     {{item.watchersCount}}
                     <el-tooltip effect="dark" :content="'fork '+item.forksCount" placement="bottom">
                         <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
-                    </el-tooltip>   
+                    </el-tooltip>
                     {{item.forksCount}}
                 </div>
             </el-card>
             <div style="text-align: center">
-                <el-pagination
-                @current-change="list"
-                background
-                layout="prev, pager, next"
-                :current-page.sync="query.page"
-                :page-size="query.pageSize"
-                :total="query.pageNumber*query.pageSize">
+                <el-pagination @current-change="list" background layout="prev, pager, next" :current-page.sync="query.page" :page-size="query.pageSize"
+                    :total="query.pageNumber*query.pageSize">
                 </el-pagination>
             </div>
         </div>
-        
-        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!projects||projects.length==0"> 
-            <font style="font-size: 30px;color:#dddddd "><b>还没有开源项目 (╯°Д°)╯︵ ┻━┻</b></font>
+
+        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!projects||projects.length==0">
+            <font style="font-size: 30px;color:#dddddd ">
+                <b>还没有开源项目 (╯°Д°)╯︵ ┻━┻</b>
+            </font>
         </el-card>
     </div>
 </template>
 <script>
     import { mapGetters } from 'vuex'
     import ProjectApi from "@/api/project"
-    export default{
-        data(){
+    export default {
+        data() {
             return {
-                query:{
-                    page:1,
-                    pageSize:5,
-                    pageNumber:1
+                query: {
+                    page: 1,
+                    pageSize: 5,
+                    pageNumber: 1
                 },
-                loading:false,
-                searchKey:"",
-                projects:[]
+                loading: false,
+                searchKey: "",
+                projects: []
             }
         },
         computed: {
@@ -108,21 +82,21 @@
                 'token',
             ])
         },
-        mounted(){
+        mounted() {
             this.list()
         },
-        methods:{
-            list(){
-                this.loading=true
-                ProjectApi.list(this.query).then((response)=>{
+        methods: {
+            list() {
+                this.loading = true
+                ProjectApi.list(this.query).then((response) => {
                     let result = response.data
                     let pageNumber = this.$util.parseHeaders(response.headers)
-                    if(pageNumber){
+                    if (pageNumber) {
                         this.query.pageNumber = pageNumber
                     }
-                    for(let i=0;i<result.length;i++){
+                    for (let i = 0; i < result.length; i++) {
                         let item = result[i]
-                        let data={}
+                        let data = {}
                         data.id = item['id']
                         data.name = item['name']
                         data.url = item['html_url']
@@ -136,17 +110,17 @@
                         data.hide = false
                         this.projects.push(data)
                     }
-                }).then(()=>this.loading=false)
+                }).then(() => this.loading = false)
             },
-            search(){
-                for(let i=0;i<this.projects.length;i++){
-                    this.projects[i].hide=this.projects[i].name.indexOf(this.searchKey)<0
+            search() {
+                for (let i = 0; i < this.projects.length; i++) {
+                    this.projects[i].hide = this.projects[i].name.indexOf(this.searchKey) < 0
                 }
             },
-            goDetails(name){
-                this.$router.push("/user/project/details/"+name)
+            goDetails(name) {
+                this.$router.push("/user/project/details/" + name)
             },
-            goGithub(url){
+            goGithub(url) {
                 window.open(url)
             }
         }

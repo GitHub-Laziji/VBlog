@@ -1,59 +1,54 @@
 <template>
     <div style="background: #F2F6FC;min-height: 1000px">
-        <van-nav-bar
-        style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;"
-        title="开源项目"/>
+        <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;" title="开源项目" />
         <div style="height: 60px;"></div>
         <router-link :to="`/mobile/user/project/details/${item.name}`" v-for="(item,index) in projects" :key="'p'+index">
-            <van-panel 
-            style="margin-bottom: 5px"
-            :title="item.name"
-            :desc="'更新时间 '+item.updateTime" >
+            <van-panel style="margin-bottom: 5px" :title="item.name" :desc="'更新时间 '+item.updateTime">
                 <div style="padding: 0px 15px 5px 15px;color: #606266;font-size: 0.9rem">{{item.description}}</div>
                 <div style="padding: 0px 15px 5px 15px;color: #606266;">
-                    <van-icon name="points"/>&nbsp;{{item.stargazersCount}}&emsp;
-                    <van-icon name="exchange"/>&nbsp;{{item.forksCount}}
+                    <van-icon name="points" />&nbsp;{{item.stargazersCount}}&emsp;
+                    <van-icon name="exchange" />&nbsp;{{item.forksCount}}
                 </div>
             </van-panel>
         </router-link>
         <div style="height: 100px;"></div>
-    
+
     </div>
 </template>
 
 <script>
     import ProjectApi from "@/api/project"
-    export default{
-        data(){
+    export default {
+        data() {
             return {
-                query:{
-                    page:1,
-                    pageSize:20,
-                    pageNumber:1
+                query: {
+                    page: 1,
+                    pageSize: 20,
+                    pageNumber: 1
                 },
-                searchKey:"",
-                projects:[]
+                searchKey: "",
+                projects: []
             }
         },
-        mounted(){
+        mounted() {
             this.list()
         },
-        methods:{
-            list(){
+        methods: {
+            list() {
                 this.$toast.loading({
                     duration: 0,
                     forbidClick: true,
                     message: '加载中'
                 })
-                ProjectApi.list(this.query).then((response)=>{
+                ProjectApi.list(this.query).then((response) => {
                     let result = response.data
                     let pageNumber = this.$util.parseHeaders(response.headers)
-                    if(pageNumber){
+                    if (pageNumber) {
                         this.query.pageNumber = pageNumber
                     }
-                    for(let i=0;i<result.length;i++){
+                    for (let i = 0; i < result.length; i++) {
                         let item = result[i]
-                        let data={}
+                        let data = {}
                         data.id = item['id']
                         data.name = item['name']
                         data.url = item['html_url']
@@ -67,17 +62,17 @@
                         data.hide = false
                         this.projects.push(data)
                     }
-                }).then(()=>this.$toast.clear())
+                }).then(() => this.$toast.clear())
             },
-            search(){
-                for(let i=0;i<this.projects.length;i++){
-                    this.projects[i].hide=this.projects[i].name.indexOf(this.searchKey)<0
+            search() {
+                for (let i = 0; i < this.projects.length; i++) {
+                    this.projects[i].hide = this.projects[i].name.indexOf(this.searchKey) < 0
                 }
             },
-            goDetails(name){
-                this.$router.push("/user/project/details/"+name)
+            goDetails(name) {
+                this.$router.push("/user/project/details/" + name)
             },
-            goGithub(url){
+            goGithub(url) {
                 window.open(url)
             }
         }

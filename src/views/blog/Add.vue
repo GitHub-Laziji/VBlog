@@ -6,23 +6,14 @@
                     <el-input v-model="form.title"></el-input>
                 </el-form-item>
                 <el-form-item label="简要说明" prop="description">
-                    <el-input  v-model="form.description" type="textarea"></el-input>
+                    <el-input v-model="form.description" type="textarea"></el-input>
                 </el-form-item>
                 <el-form-item label="博客正文" prop="content">
-                    <mavon-editor
-                    @imgAdd="imgAdd"
-                    style="max-height: 500px"
-                    ref="md"
-                    v-model="form.content"
-                    :subfield="false"
-		            :toolbars="mavonEditorToolbars"/>
+                    <mavon-editor @imgAdd="imgAdd" style="max-height: 500px" ref="md" v-model="form.content" :subfield="false" :toolbars="mavonEditorToolbars"
+                    />
                 </el-form-item>
                 <el-form-item>
-                    <el-button 
-                    type="primary" 
-                    @click="onSubmit" 
-                    :loading="submitButton.loading"
-                    :disabled="submitButton.disabled">发表</el-button>
+                    <el-button type="primary" @click="onSubmit" :loading="submitButton.loading" :disabled="submitButton.disabled">发表</el-button>
                     <el-button @click="$router.push('/user/blog/main')">返回</el-button>
                 </el-form-item>
             </el-form>
@@ -34,16 +25,16 @@
     import { mapGetters } from 'vuex'
     import TokenDialog from '@/views/common/TokenDialog'
     import GistApi from '@/api/gist'
-    export default{
+    export default {
         components: {
             TokenDialog
         },
-        data(){
+        data() {
             return {
                 form: {
-                    title:"",
-                    description:"",
-                    content:""
+                    title: "",
+                    description: "",
+                    content: ""
                 },
                 ruleValidate: {
                     title: [
@@ -57,11 +48,11 @@
                         { required: true, message: '请输博客入正文', trigger: 'blur' }
                     ],
                 },
-                submitButton:{
-                    loading:false,
-                    disabled:false
+                submitButton: {
+                    loading: false,
+                    disabled: false
                 },
-                mavonEditorToolbars:{
+                mavonEditorToolbars: {
                     bold: true, // 粗体 
                     italic: true, // 斜体 
                     header: true, // 标题 
@@ -99,35 +90,35 @@
                 'token',
             ])
         },
-        methods:{
-            imgAdd(pos, file){
+        methods: {
+            imgAdd(pos, file) {
                 this.$refs.md.$img2Url(pos, file.miniurl)
             },
-            onSubmit(){
-                if(this.token){
+            onSubmit() {
+                if (this.token) {
                     this.publish()
-                }else{
-                    this.$refs.tokenDialog.open(()=>{
+                } else {
+                    this.$refs.tokenDialog.open(() => {
                         this.publish()
                     })
                 }
             },
-            publish(){   
+            publish() {
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
-                        this.submitButton.loading=true
-                        this.submitButton.disabled=true
-                        GistApi.create(this.form).then((response)=>{
+                        this.submitButton.loading = true
+                        this.submitButton.disabled = true
+                        GistApi.create(this.form).then((response) => {
                             let result = response.data
                             // console.log(JSON.stringify(result))
                             this.$message({
                                 message: '发表成功',
                                 type: 'success'
                             })
-                            this.$router.push("/user/blog/details/"+result.id)
-                        }).then(()=>{
-                            this.submitButton.loading=false
-                            this.submitButton.disabled=false
+                            this.$router.push("/user/blog/details/" + result.id)
+                        }).then(() => {
+                            this.submitButton.loading = false
+                            this.submitButton.disabled = false
                         })
                     }
                 })
@@ -137,5 +128,4 @@
 </script>
 
 <style>
-  
 </style>

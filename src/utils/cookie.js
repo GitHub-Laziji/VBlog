@@ -1,16 +1,16 @@
 import Cookies from 'js-cookie'
 
-export default{
-    setAttribute(key,value,time){
-        if(time){
-            return Cookies.set(key, value,{ expires: time })
+export default {
+    setAttribute(key, value, time) {
+        if (time) {
+            return Cookies.set(key, value, { expires: time })
         }
         return Cookies.set(key, value)
     },
-    getAttribute(key){
+    getAttribute(key) {
         return Cookies.get(key)
     },
-    remove(key){
+    remove(key) {
         return Cookies.remove(key)
     }
 }
