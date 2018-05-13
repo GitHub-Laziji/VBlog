@@ -13,4 +13,16 @@ export default {
             url: '/users/' + githubUsername
         })
     },
+    followers: function (query) {
+        let githubUsername = store.state.configuration.githubUsername
+        return request({
+            url: `/users/${githubUsername}/followers?page=${query.page}&per_page=${query.pageSize}`
+        })
+    },
+    following: function (query) {
+        let githubUsername = store.state.configuration.githubUsername
+        return request({
+            url: `/users/${githubUsername}/following?page=${query.page}&per_page=${query.pageSize}`
+        })
+    },
 }

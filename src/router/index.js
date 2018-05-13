@@ -6,6 +6,8 @@ import Layout from '@/views/layout/Layout'
 
 import NewMain from '@/views/new/Main'
 
+import SocialMain from '@/views/social/Main'
+
 import BlogMain from '@/views/blog/Main'
 import BlogAdd from '@/views/blog/Add'
 import BlogEdit from '@/views/blog/Edit'
@@ -48,6 +50,23 @@ export const constantRouterMap = [
                 path: 'main',
                 component: NewMain,
                 meta: { title: '最新动态' }
+            }
+        ]
+    },
+    {
+        path: '/user/social',
+        redirect: '/user/social/main',
+        component: Layout,
+        meta: {
+            type: "user",
+            icon: 'el-icon-mobile-phone',
+            title: '社交圈'
+        },
+        children: [
+            {
+                path: 'main',
+                component: SocialMain,
+                meta: { title: '社交圈' }
             }
         ]
     },

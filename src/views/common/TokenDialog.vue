@@ -6,7 +6,7 @@
                     <el-tag>{{githubUsername}}</el-tag>
                 </el-form-item>
                 <el-form-item prop="token" label="Token" :rules="[{ required: true, message: '请输入accessToken', trigger: 'blur' }]">
-                    <el-input v-model="tokenForm.token"></el-input>
+                    <el-input v-model="tokenForm.token" placeholder="请保管好Token"></el-input>
                 </el-form-item>
             </el-form>
 

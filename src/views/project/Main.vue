@@ -33,6 +33,7 @@
                 </div>
                 <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
                     <el-tag size="small" type="success">{{item.language}}</el-tag>
+                    <el-tag size="small" type="danger" v-if="item.license">{{item.license}}</el-tag>
                     <el-tooltip effect="dark" :content="'star '+item.stargazersCount" placement="bottom">
                         <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
                     </el-tooltip>
@@ -105,6 +106,7 @@
                         data.watchersCount = item['watchers_count']
                         data.forksCount = item['forks_count']
                         data.language = item['language']
+                        data.license = item['license']?item['license']['spdx_id']:null
                         data.createTime = this.$util.utcToLocal(item['created_at'])
                         data.updateTime = this.$util.utcToLocal(item['updated_at'])
                         data.hide = false
