@@ -3,11 +3,12 @@
         <el-card shadow="never" style="min-height: 400px">
             <div slot="header">
                 <el-row>
-                    <el-col :span="16">
+                    <el-col :span="12">
                         <span>{{blog.title}}</span>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :span="12">
                         <div style="text-align: right;">
+                            <el-button @click="$share()" style="padding: 3px 0" type="text" icon="el-icon-share">分享</el-button>
                             <el-button @click="edit" style="padding: 3px 0" type="text" icon="el-icon-edit" v-if="token">编辑</el-button>
                             <el-button style=" padding: 3px 0" type="text" icon="el-icon-more-outline" @click="more">更多博客</el-button>
                         </div>

@@ -3,11 +3,12 @@
         <el-card shadow="never" style="min-height: 400px">
             <div slot="header">
                 <el-row>
-                    <el-col :span="16">
+                    <el-col :span="12">
                         <span>{{project.name}}</span>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :span="12">
                         <div style="text-align: right;">
+                            <el-button @click="$share()" style="padding: 3px 0" type="text" icon="el-icon-share">分享</el-button>
                             <el-button @click="goGithub(project.url)" style="padding: 3px 0" type="text" icon="el-icon-back">前往GitHub</el-button>
                             <el-button @click="more" style="padding: 3px 0" type="text" icon="el-icon-more-outline">更多项目</el-button>
                         </div>
@@ -23,6 +24,7 @@
             </div>
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 25px 0px;border-bottom: 1px solid #E4E7ED;">
                 <el-tag size="small" type="success">{{project.language}}</el-tag>
+                <el-tag size="small" type="danger" v-if="project.license">{{project.license}}</el-tag>
                 <el-tooltip effect="dark" :content="'star '+project.stargazersCount" placement="bottom">
                     <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
                 </el-tooltip>
@@ -75,6 +77,7 @@
                 this.project.forksCount = result['forks_count']
                 this.project.language = result['language']
                 this.project.description = result['description']
+                this.project.license = result['license']?result['license']['spdx_id']:null
                 this.project.content = this.$markdown(base64.decode(result['readme_content']))
                 this.project.createTime = this.$util.utcToLocal(result['created_at'])
                 this.project.updateTime = this.$util.utcToLocal(result['updated_at'])
