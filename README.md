@@ -74,10 +74,11 @@
 
 ## 项目截图
 
-![博客截图](screenshots/201805051931.png)
+![博客截图](screenshots/201805152146.png)
+![博客截图](screenshots/201805152147.png)
 ![博客截图](screenshots/201805111431.png)
 ![博客截图](screenshots/201805111438.png)
-![博客截图](screenshots/201805040936.png)
+
 
 ## 快速使用
 搭建博客只需2步
