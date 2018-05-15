@@ -17,6 +17,9 @@
                 <el-form-item label="音乐链接" prop="audioUrl">
                     <el-input v-model="configure.audioUrl" placeholder="背景音乐链接"></el-input>
                 </el-form-item>
+                <el-form-item label="自动播放">
+                    <el-switch v-model="configure.audioAutoPlay"></el-switch>
+                </el-form-item>
                 <el-form-item label="极简模式">
                     <el-switch v-model="configure.mini"></el-switch>
                 </el-form-item>

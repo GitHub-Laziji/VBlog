@@ -10,6 +10,7 @@ const getters = {
     backgroundColorRight: state => state.configuration.backgroundColorRight,
     audioUrl: state => state.configuration.audioUrl,
     mini: state => state.configuration.mini,
+    audioAutoPlay: state => state.configuration.audioAutoPlay,
     avatarUrl: state => state.user.avatarUrl,
     name: state => state.user.name,
     location: state => state.user.location,

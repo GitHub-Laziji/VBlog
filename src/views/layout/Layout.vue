@@ -54,7 +54,11 @@
                                 {{$util.formatTime(music.currentTime)}}/{{$util.formatTime(music.maxTime)}}
                             </el-col>
                         </el-row>
-                        <audio ref="music" loop autoplay>
+
+                        <audio ref="music" loop autoplay v-if="audioAutoPlay">
+                            <source :src="audioUrl" type="audio/mpeg">
+                        </audio>
+                        <audio ref="music" loop v-else>
                             <source :src="audioUrl" type="audio/mpeg">
                         </audio>
                     </el-col>
@@ -144,7 +148,8 @@
                 'audioUrl',
                 'mini',
                 'followers',
-                'following'
+                'following',
+                'audioAutoPlay'
             ])
         },
         watch: {
