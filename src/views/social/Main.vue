@@ -2,13 +2,14 @@
     <div>
         <el-card shadow="never" style="min-height: 400px;margin-bottom: 20px;padding: 0px 0px 20px 0px">
             <el-tabs v-model="activeTab" type="card" @tab-click="onSelect">
-                <el-tab-pane label="粉丝" name="followers" style="padding: 5px">
+                <el-tab-pane :label="'粉丝 '+followersTotal" name="followers" style="padding: 5px">
                     <div v-loading="followers.loading">
                         <div v-if="followers.list.length">
                             <el-row style="min-height: 200px; ">
                                 <el-col :span="8" v-for="(item,index) in followers.list" :key="'followers'+index" style="padding: 10px">
                                     <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 1.8">
-                                        <i class="el-icon-star-on"></i>&emsp;{{item.name}}
+                                        <i class="el-icon-star-on"></i>&emsp;
+                                        <a @click="$router.push(`/user/social/details/${item.name}`)" style=" text-decoration:none;cursor:pointer">{{item.name}}</a>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
                                         <a :href="item.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
@@ -30,13 +31,14 @@
                         </div>
                     </div>
                 </el-tab-pane>
-                <el-tab-pane label="关注" name="following" style="padding: 5px">
+                <el-tab-pane :label="'关注 '+followingTotal" name="following" style="padding: 5px">
                     <div v-loading="following.loading">
                         <div v-if="following.list.length">
                             <el-row style="min-height: 200px; ">
                                 <el-col :span="8" v-for="(item,index) in following.list" :key="'following'+index" style="padding: 10px">
                                     <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 1.8">
-                                        <i class="el-icon-star-on"></i>&emsp;{{item.name}}
+                                        <i class="el-icon-star-on"></i>&emsp;
+                                        <a @click="$router.push(`/user/social/details/${item.name}`)" style=" text-decoration:none;cursor:pointer">{{item.name}}</a>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
                                         <a :href="item.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
@@ -63,6 +65,7 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
     import UserApi from '@/api/user'
     export default {
         data() {
@@ -87,6 +90,13 @@
                     list: []
                 }
             }
+        },
+        computed: {
+            ...mapGetters([
+                'githubUsername',
+                'followersTotal',
+                'followingTotal'
+            ])
         },
         mounted() {
             this.onSelect()

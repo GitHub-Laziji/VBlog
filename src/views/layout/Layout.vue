@@ -147,8 +147,8 @@
                 'backgroundColorRight',
                 'audioUrl',
                 'mini',
-                'followers',
-                'following',
+                'followersTotal',
+                'followingTotal',
                 'audioAutoPlay'
             ])
         },

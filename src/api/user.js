@@ -25,4 +25,9 @@ export default {
             url: `/users/${githubUsername}/following?page=${query.page}&per_page=${query.pageSize}`
         })
     },
+    info:function (githubUsername) {
+        return request({
+            url: `/users/${githubUsername}`
+        })
+    },
 }

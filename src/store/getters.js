@@ -15,8 +15,8 @@ const getters = {
     name: state => state.user.name,
     location: state => state.user.location,
     blog: state => state.user.blog,
-    followers: state => state.user.followers,
-    following: state => state.user.following,
+    followersTotal: state => state.user.followers,
+    followingTotal: state => state.user.following,
 
 
 }

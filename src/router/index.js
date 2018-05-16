@@ -7,6 +7,7 @@ import Layout from '@/views/layout/Layout'
 import NewMain from '@/views/new/Main'
 
 import SocialMain from '@/views/social/Main'
+import SocialDetails from '@/views/social/Details'
 
 import BlogMain from '@/views/blog/Main'
 import BlogAdd from '@/views/blog/Add'
@@ -67,6 +68,11 @@ export const constantRouterMap = [
                 path: 'main',
                 component: SocialMain,
                 meta: { title: '社交圈' }
+            },
+            {
+                path: 'details/:name',
+                component: SocialDetails,
+                meta: { title: '用户资料' }
             }
         ]
     },
@@ -207,15 +213,15 @@ export const constantRouterMap = [
             {
                 path: 'main',
                 component: MobileBlogMain,
-                meta:{
-                    scrollTop:true
+                meta: {
+                    scrollTop: true
                 }
             },
             {
                 path: 'details/:id',
                 component: MobileBlogDetails,
-                meta:{
-                    scrollTop:true
+                meta: {
+                    scrollTop: true
                 }
             }
         ]
@@ -234,15 +240,15 @@ export const constantRouterMap = [
             {
                 path: 'main',
                 component: MobileProjectMain,
-                meta:{
-                    scrollTop:true
+                meta: {
+                    scrollTop: true
                 }
             },
             {
                 path: 'details/:name',
                 component: MobileProjectDetails,
-                meta:{
-                    scrollTop:true
+                meta: {
+                    scrollTop: true
                 }
             }
         ]
@@ -261,8 +267,8 @@ export const constantRouterMap = [
             {
                 path: 'main',
                 component: MobileSelfMain,
-                meta:{
-                    scrollTop:true
+                meta: {
+                    scrollTop: true
                 }
             }
         ]
@@ -275,8 +281,8 @@ export const constantRouterMap = [
 
 const router = new Router({
     routes: constantRouterMap,
-    scrollBehavior (to, from, savedPosition) {
-        if(to.meta.scrollTop){
+    scrollBehavior(to, from, savedPosition) {
+        if (to.meta.scrollTop) {
             return { x: 0, y: 0 }
         }
     }
