@@ -5,22 +5,17 @@ import Error404 from '@/views/error/Error404'
 import Layout from '@/views/layout/Layout'
 
 import NewMain from '@/views/new/Main'
-
 import SocialMain from '@/views/social/Main'
 import SocialDetails from '@/views/social/Details'
-
 import BlogMain from '@/views/blog/Main'
 import BlogAdd from '@/views/blog/Add'
 import BlogEdit from '@/views/blog/Edit'
 import BlogDetails from '@/views/blog/Details'
-
 import ProjectMain from '@/views/project/Main'
 import ProjectDetails from '@/views/project/Details'
-
 import ReadmeMain from '@/views/readme/Main'
-
 import ConfigureMain from '@/views/configure/Main'
-
+import HelperMain from '@/views/helper/Main'
 import License from '@/views/License'
 
 import MobileLayout from '@/mobile_views/layout/Layout'
@@ -28,7 +23,6 @@ import MobileBlogMain from '@/mobile_views/blog/Main'
 import MobileBlogDetails from '@/mobile_views/blog/Details'
 import MobileProjectMain from '@/mobile_views/project/Main'
 import MobileProjectDetails from '@/mobile_views/project/Details'
-
 import MobileSelfMain from '@/mobile_views/self/Main'
 
 
@@ -127,6 +121,24 @@ export const constantRouterMap = [
                 path: 'details/:name',
                 component: ProjectDetails,
                 meta: { title: '项目详情' }
+            }
+        ]
+    },
+    {
+        path: '/user/helper',
+        redirect: '/user/helper/main',
+        component: Layout,
+        meta: {
+            type: "user",
+            icon: 'el-icon-printer',
+            title: '使用帮助',
+            mini: true
+        },
+        children: [
+            {
+                path: 'main',
+                component: HelperMain,
+                meta: { title: '使用帮助' }
             }
         ]
     },
