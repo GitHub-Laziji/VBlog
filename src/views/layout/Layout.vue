@@ -23,7 +23,7 @@
                         <el-menu @select="selectTopbar" :default-active="topbar.active" mode="horizontal">
                             <el-submenu index="#more">
                                 <template slot="title">了解博主</template>
-                                <el-menu-item index="#githubHome">github项目主页</el-menu-item>
+                                <el-menu-item index="#githubHome">github主页</el-menu-item>
                                 <el-menu-item index="#blog">其他博客</el-menu-item>
                             </el-submenu>
                             <!-- <el-submenu index="#social">
@@ -127,7 +127,7 @@
                     full: false
                 },
                 topbar: {
-                    active: ""
+                    active: "",
                 },
                 randomIcon: []
             }
@@ -182,7 +182,14 @@
                         window.open('https://github.com/' + this.githubUsername)
                         break
                     case "#blog":
-                        window.open('http://' + this.blog)
+                        if (this.blog && this.blog.toLowerCase() !== `${this.githubUsername}.github.io`.toLowerCase()) {
+                            window.open('http://' + this.blog)
+                        } else {
+                            this.$message({
+                                message: '博主没有其他博客',
+                                type: 'info'
+                            })
+                        }
                         break
                     default:
                         break
