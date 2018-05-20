@@ -182,8 +182,8 @@
                         window.open('https://github.com/' + this.githubUsername)
                         break
                     case "#blog":
-                        if (this.blog && this.blog.toLowerCase() !== `${this.githubUsername}.github.io`.toLowerCase()) {
-                            window.open('http://' + this.blog)
+                        if (this.blog) {
+                            window.open((this.blog.match(/https?:\/\//i)?'':'https://') + this.blog)
                         } else {
                             this.$message({
                                 message: '博主没有其他博客',
