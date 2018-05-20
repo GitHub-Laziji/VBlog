@@ -3,7 +3,7 @@
         <el-card shadow="never" style="min-height: 600px;margin-bottom: 20px;">
             <el-collapse v-model="active" accordion>
                 <el-collapse-item title="如何部署" name="deploy">
-                    <el-carousel height="352px" :autoplay="false" @change="deployChange">
+                    <el-carousel trigger="click" height="352px" :autoplay="false" @change="deployChange">
                         <el-carousel-item v-for="(item,index) in deploy.images" :key="'deploy'+index">
                             <div style="border-radius:5px; border: 1px solid #EBEEF5;height: 350px;">
                                 <img :src="item" style="width: 100%;height:350px;">
@@ -17,7 +17,7 @@
                     </el-steps>
                 </el-collapse-item>
                 <el-collapse-item title="如何使用" name="use">
-                    <el-carousel height="352px" :autoplay="false" @change="useChange">
+                    <el-carousel trigger="click" height="352px" :autoplay="false" @change="useChange">
                         <el-carousel-item v-for="(item,index) in use.images" :key="'use'+index">
                             <div style="border-radius:5px; border: 1px solid #EBEEF5;height: 350px;">
                                 <img :src="item" style="width: 100%;height:350px;">
@@ -31,7 +31,15 @@
                     </el-steps>
                 </el-collapse-item>
                 <el-collapse-item title="开发注意事项" name="develop">
-                    <div style="padding: 10px;line-height: 35px;color: #606266;font-size: 19px">配置文件读取的总是与 index.html 同级的 ./static/configuration.json, 所以本地 npm run dev 的时候会出现修改配置无效的情况, 如果需要修改的话修改本地的配置文件就行, 发布到 github 之后不影响, 因为修改配置的时候是通过 github-api 修改 你的用户名.github.io 下的 /static/configuration.json</div>
+                    <div style="padding: 10px;line-height: 30px;color: #303133;font-size: 16px">
+                        配置文件读取的总是与
+                        <tt>index.html</tt> 同级的
+                        <tt>./static/configuration.json</tt> , 而修改配置的时候是通过
+                        <tt>github-api</tt> 修改
+                        <tt>你的用户名.github.io</tt> 下的
+                        <tt>/static/configuration.json</tt>, 所以本地
+                        <tt>npm run dev</tt> 的时候会出现修改配置无效的情况, 如果需要修改的话修改本地的配置文件就行, 发布到
+                        <tt>github</tt> 之后不影响</div>
                 </el-collapse-item>
             </el-collapse>
         </el-card>
@@ -52,7 +60,7 @@
                     status: "process",
                     active: 0,
                 },
-                use:{
+                use: {
                     images: [
                         require('../../assets/use0.png'),
                         require('../../assets/use1.png'),
