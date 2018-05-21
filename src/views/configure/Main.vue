@@ -33,12 +33,12 @@
                     <el-row>
                         <el-col :span="3">
                             <el-form-item label="背景颜色">
-                                <el-color-picker v-model="configure.backgroundColorLeft"></el-color-picker>
+                                <el-color-picker :predefine="predefineColors" v-model="configure.backgroundColorLeft"></el-color-picker>
                             </el-form-item>
                         </el-col>
                         <el-col :span="21">
                             <el-form-item>
-                                <el-color-picker v-model="configure.backgroundColorRight"></el-color-picker>
+                                <el-color-picker :predefine="predefineColors" v-model="configure.backgroundColorRight"></el-color-picker>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -62,6 +62,9 @@
                 <el-form-item>
                     <el-button @click="submit" :loading="submitButton.loading" :disabled="submitButton.disabled" type="primary">修改配置</el-button>
                     <el-button @click="reset">还原</el-button>
+                    <el-popover placement="top-end" width="200" trigger="click" content="打开极简模式将隐藏部分不主要的菜单, 音乐链接需要是媒体 (不可以是HTML页面)">
+                        <el-button slot="reference" icon="el-icon-question" type="text" style="float: right;">说明</el-button>
+                    </el-popover>
                 </el-form-item>
             </el-form>
         </el-card>
@@ -91,6 +94,18 @@
                     loading: false,
                     disabled: false
                 },
+                predefineColors: [
+                    '#ff4500',
+                    '#ff8c00',
+                    '#ffd700',
+                    '#CCFC2D',
+                    '#90ee90',
+                    '#2DFCA6',
+                    '#00ced1',
+                    '#1e90ff',
+                    '#c71585',
+                    '#FC2DEB'
+                ]
             }
         },
         mounted() {
@@ -115,10 +130,15 @@
                             this.configureSha = result.content.sha
                             this.initConfigure = JSON.parse(JSON.stringify(this.configure))
                             this.$store.dispatch("LocalReload", this.configure)
-                            this.$message({
-                                message: '修改成功',
+                            this.$notify({
+                                title: '成功',
+                                message: '修改配置成功',
                                 type: 'success'
                             })
+                            // this.$message({
+                            //     message: '修改成功',
+                            //     type: 'success'
+                            // })
                         }).then(() => {
                             this.submitButton.loading = false
                             this.submitButton.disabled = false
