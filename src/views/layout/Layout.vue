@@ -26,11 +26,10 @@
                                 <el-menu-item index="#githubHome">github主页</el-menu-item>
                                 <el-menu-item index="#blog">其他博客</el-menu-item>
                             </el-submenu>
-                            <!-- <el-submenu index="#social">
-                                <template slot="title">社交信息</template>
-                                <el-menu-item index="#followers">粉丝&nbsp;&nbsp;{{followers}}</el-menu-item>
-                                <el-menu-item index="#following">关注&nbsp;&nbsp;{{following}}</el-menu-item>
-                            </el-submenu> -->
+                            <el-submenu index="#webSites" v-if="webSites.length>0">
+                                <template slot="title">其他网站</template>
+                                <el-menu-item :index="'#webSites-'+index" v-for="(item,index) in webSites" :key="'#webSites'+index">{{item.name}}</el-menu-item>
+                            </el-submenu>
                         </el-menu>
                     </el-col>
                     <el-col :span="8" style="text-align: center;padding: 12px 0px 0px 10px">
@@ -149,7 +148,8 @@
                 'mini',
                 'followersTotal',
                 'followingTotal',
-                'audioAutoPlay'
+                'audioAutoPlay',
+                'webSites'
             ])
         },
         watch: {
@@ -192,6 +192,11 @@
                         }
                         break
                     default:
+                        if(/#webSites-\d+/.test(index)){
+                            let i = parseInt(index.split('-')[1])
+                            let url = this.webSites[i].url
+                            window.open((url.match(/https?:\/\//i)?'':'https://') + url)
+                        }
                         break
                 }
             },
