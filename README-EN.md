@@ -11,8 +11,8 @@
 - [Profile](#Profile)
 - [Demo](#Demo)
 - [Plugin](#Plugin)
-- [Example Pictures](#Example Pictures)
-- [Use Setup](#Use Setup)
+- [Example%20Pictures](#Example%20Pictures)
+- [Use%20Setup](#Use%20Setup)
 - [Develop](#Develop)
 - [License](#License)
 
@@ -32,7 +32,7 @@
 - Element (PC)
 - Vant (Mobile)
 
-## Pictures
+## Example Pictures
 
 ![博客截图](screenshots/201805152146.png)
 ![博客截图](screenshots/201805152147.png)
