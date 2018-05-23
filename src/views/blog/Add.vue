@@ -90,6 +90,18 @@
                 'token',
             ])
         },
+        mounted() {
+            if (!this.token) {
+                this.$nextTick(() => {
+                    this.$message({
+                        message: '权限不足',
+                        type: 'error'
+                    })
+                    this.$router.go(-1)
+                })
+                return
+            }
+        },
         methods: {
             imgAdd(pos, file) {
                 this.$refs.md.$img2Url(pos, file.miniurl)

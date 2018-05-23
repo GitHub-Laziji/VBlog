@@ -94,6 +94,7 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex'
     import ProjectApi from '@/api/project'
     export default {
         data() {
@@ -134,7 +135,22 @@
                 ]
             }
         },
+        computed: {
+            ...mapGetters([
+                'token'
+            ])
+        },
         mounted() {
+            if (!this.token) {
+                this.$nextTick(() => {
+                    this.$message({
+                        message: '权限不足',
+                        type: 'error'
+                    })
+                    this.$router.go(-1)
+                })
+                return
+            }
             this.loading = true
             ProjectApi.getBlogConfigure().then((response) => {
                 let result = response.data

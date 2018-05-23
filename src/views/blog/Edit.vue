@@ -85,6 +85,16 @@
             ])
         },
         mounted() {
+            if (!this.token) {
+                this.$nextTick(() => {
+                    this.$message({
+                        message: '权限不足',
+                        type: 'error'
+                    })
+                    this.$router.go(-1)
+                })
+                return
+            }
             this.loading = true
             this.form.id = this.$route.params.id
             GistApi.single(this.form.id).then((response) => {

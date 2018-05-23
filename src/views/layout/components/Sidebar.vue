@@ -62,7 +62,7 @@
             },
             openTokenDialog() {
                 this.$refs.tokenDialog.open(() => {
-                    console.log("aaa")
+           
                 })
             },
             cancellation() {
