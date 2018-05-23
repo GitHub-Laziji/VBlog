@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/vant-1.1.2-brightgreen.svg)
 
 
-[##English Documents](README-EN.md)
+## [English Documents](README-EN.md)
 
 ## 目录
 - [简介](#简介)
