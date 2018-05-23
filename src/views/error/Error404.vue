@@ -1,11 +1,7 @@
 <template>
     <div class="error404">
         <div class="error404-body-con">
-            <div class="error404-body-con-title">4
-                <span>
-                    <i class="el-icon-question"></i>
-                    </Icon>
-                </span>4</div>
+            <div class="error404-body-con-title">4<span><i class="el-icon-question"></i></span>4</div>
             <p class="error404-body-con-message">YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST</p>
             <div class="error404-btn-con">
                 <el-button @click="goHome" size="large" style="width: 200px;" type="text">返回首页</el-button>
