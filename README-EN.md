@@ -11,8 +11,8 @@
 - [Profile](#Profile)
 - [Demo](#Demo)
 - [Plugin](#Plugin)
-- [Example%20Pictures](#Example%20Pictures)
-- [Use%20Setup](#Use%20Setup)
+- [Pictures](#Pictures)
+- [Use](#Use)
 - [Develop](#Develop)
 - [License](#License)
 
@@ -32,14 +32,14 @@
 - Element (PC)
 - Vant (Mobile)
 
-## Example Pictures
+## Pictures
 
 ![博客截图](screenshots/201805152146.png)
 ![博客截图](screenshots/201805152147.png)
 ![博客截图](screenshots/201805111431.png)
 ![博客截图](screenshots/201805111438.png)
 
-## Use Setup
+## Use
 搭建博客只需2步
 - 点击github头像旁边的 "+" 号 选择 ```Import repository ```克隆地址填 ```https://github.com/GitHub-Laziji/GitHub-Laziji.github.io ```项目名填 ```你的用户名.github.io ```
 - 克隆完成后 修改文件 ```/static/configuration.json``` 中的 ```githubUsername``` 为自己的github用户名
