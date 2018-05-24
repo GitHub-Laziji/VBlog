@@ -31,21 +31,27 @@
                 <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
                     {{item.description}}
                 </div>
-                <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 0px 0px">
-                    <el-tag size="small" type="success">{{item.language}}</el-tag>
-                    <el-tag size="small" type="danger" v-if="item.license">{{item.license}}</el-tag>
-                    <el-tooltip effect="dark" :content="'star '+item.stargazersCount" placement="bottom">
-                        <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
-                    </el-tooltip>
-                    {{item.stargazersCount}}
-                    <el-tooltip effect="dark" :content="'watch '+item.watchersCount" placement="bottom">
-                        <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
-                    </el-tooltip>
-                    {{item.watchersCount}}
-                    <el-tooltip effect="dark" :content="'fork '+item.forksCount" placement="bottom">
-                        <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
-                    </el-tooltip>
-                    {{item.forksCount}}
+                <div style="font-size: 1.1rem;color: #303133;padding: 10px 0px 0px 0px">
+                    <el-row>
+                        <el-col :span="16" style="padding-top: 5px">
+                            <el-tooltip effect="dark" :content="'star '+item.stargazersCount" placement="bottom">
+                                <i class="el-icon-star-off" style="margin: 0px 5px 0px 0px"></i>
+                            </el-tooltip>
+                            {{item.stargazersCount}}
+                            <el-tooltip effect="dark" :content="'watch '+item.watchersCount" placement="bottom">
+                                <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
+                            </el-tooltip>
+                            {{item.watchersCount}}
+                            <el-tooltip effect="dark" :content="'fork '+item.forksCount" placement="bottom">
+                                <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
+                            </el-tooltip>
+                            {{item.forksCount}}
+                        </el-col>
+                        <el-col :span="8" style="text-align: right;">
+                            <el-tag size="small" type="danger" v-if="item.license">{{item.license}}</el-tag>
+                            <el-tag size="small" type="success">{{item.language}}</el-tag>
+                        </el-col>
+                    </el-row>
                 </div>
             </el-card>
             <div style="text-align: center">
@@ -106,7 +112,7 @@
                         data.watchersCount = item['watchers_count']
                         data.forksCount = item['forks_count']
                         data.language = item['language']
-                        data.license = item['license']?item['license']['spdx_id']:null
+                        data.license = item['license'] ? item['license']['spdx_id'] : null
                         data.createTime = this.$util.utcToLocal(item['created_at'])
                         data.updateTime = this.$util.utcToLocal(item['updated_at'])
                         data.hide = false

@@ -127,14 +127,8 @@ export default {
         windowSize.height = window.innerWeight || document.documentElement.clientHeight || document.body.clientHeight
         return windowSize
     },
-    cutStr(str, len) {
-        try {
-            if (str.length > len) {
-                return str.substring(0, len) + '...'
-            }
-            return str
-        } catch (e) {
-            return ""
-        }
-    },
+    addHttp(url){
+        return (url.match(/https?:\/\//i)?'':'https://') + url
+    }
+
 }

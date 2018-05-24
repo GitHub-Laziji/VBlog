@@ -6,7 +6,7 @@
                     <el-button @click="full" :icon="fullButton.full?'el-icon-close':'el-icon-rank'" circle></el-button>
                 </el-tooltip>
             </div>
-            <div @mouseenter="moveIcon(index)" v-for="(item,index) in randomIcon" :key="'ri'+index" :style="'position:absolute; top:'+item.top+'px; left:'+item.left+'px; z-index:1;'">
+            <div v-for="(item,index) in randomIcon" :key="'ri'+index" :style="'position:absolute; top:'+item.top+'px; left:'+item.left+'px; z-index:1;'">
                 <font :style="'font-size: '+item.size+'px;color:#fff;'">
                     <b>♪</b>
                 </font>
@@ -20,7 +20,7 @@
             <el-card shadow="never" :body-style="{ padding: '0px' }">
                 <el-row>
                     <el-col :span="10">
-                        <el-menu @select="selectTopbar" :default-active="topbar.active" mode="horizontal">
+                        <el-menu @select="selectTopbar" :default-active="topbar.active" mode="horizontal" menu-trigger="click">
                             <el-submenu index="#more">
                                 <template slot="title">了解博主</template>
                                 <el-menu-item index="#githubHome">github主页</el-menu-item>
@@ -164,8 +164,12 @@
             let width = window.innerWidth
             for (let i = 0; i < 12; i++) {
                 let temp = {}
+                let left = this.$util.randomInt(10, width - 310)
+                if(left>width/2-150){
+                    left+=300
+                }
+                temp["left"] = left
                 temp["top"] = this.$util.randomInt(20, 300)
-                temp["left"] = this.$util.randomInt(30, width - 30)
                 temp["size"] = this.$util.randomInt(20, 40)
                 this.randomIcon.push(temp)
             }
@@ -203,7 +207,11 @@
             moveIcon(index) {
                 let width = window.innerWidth
                 this.randomIcon[index]["top"] = this.$util.randomInt(20, 300)
-                this.randomIcon[index]["left"] = this.$util.randomInt(30, width - 30)
+                let left = this.$util.randomInt(10, width - 310)
+                if(left>width/2-150){
+                    left+=300
+                }
+                this.randomIcon[index]["left"] = left
             },
             full() {
                 if (!this.fullButton.full) {

@@ -16,7 +16,6 @@ import ProjectDetails from '@/views/project/Details'
 import ReadmeMain from '@/views/readme/Main'
 import ConfigureMain from '@/views/configure/Main'
 import HelperMain from '@/views/helper/Main'
-import License from '@/views/License'
 
 import MobileLayout from '@/mobile_views/layout/Layout'
 import MobileBlogMain from '@/mobile_views/blog/Main'
@@ -156,24 +155,6 @@ export const constantRouterMap = [
                 path: 'main',
                 component: ReadmeMain,
                 meta: { title: 'README.md' }
-            }
-        ]
-    },
-    {
-        path: '/user/license',
-        redirect: '/user/license/main',
-        component: Layout,
-        meta: {
-            type: "user",
-            icon: 'el-icon-news',
-            title: 'License',
-            mini: true
-        },
-        children: [
-            {
-                path: 'main',
-                component: License,
-                meta: { title: 'License' }
             }
         ]
     },

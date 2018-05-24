@@ -7,14 +7,14 @@
                         <div v-if="followers.list.length">
                             <el-row style="min-height: 200px; ">
                                 <el-col :span="8" v-for="(item,index) in followers.list" :key="'followers'+index" style="padding: 10px">
-                                    <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 1.8">
-                                        <i class="el-icon-star-on"></i>&emsp;
+                                    <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 20px">
+                                        <i class="el-icon-star-off"></i>&emsp;
                                         <a @click="$router.push(`/user/social/details/${item.name}`)" style=" text-decoration:none;cursor:pointer">{{item.name}}</a>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
                                         <a :href="item.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
                                         <br>
-                                        <img :src="item.avatarUrl" style="width: 100%;">
+                                        <img :src="item.avatarUrl" style="width: 100%;border-radius:5px;margin-top: 5px">
                                     </el-card>
                                 </el-col>
                             </el-row>
@@ -36,14 +36,14 @@
                         <div v-if="following.list.length">
                             <el-row style="min-height: 200px; ">
                                 <el-col :span="8" v-for="(item,index) in following.list" :key="'following'+index" style="padding: 10px">
-                                    <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 1.8">
-                                        <i class="el-icon-star-on"></i>&emsp;
+                                    <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 20px">
+                                        <i class="el-icon-star-off"></i>&emsp;
                                         <a @click="$router.push(`/user/social/details/${item.name}`)" style=" text-decoration:none;cursor:pointer">{{item.name}}</a>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
                                         <a :href="item.htmlUrl" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>
                                         <br>
-                                        <img :src="item.avatarUrl" style="width: 100%;">
+                                        <img :src="item.avatarUrl" style="width: 100%;border-radius:5px;margin-top: 5px">
                                     </el-card>
                                 </el-col>
                             </el-row>

@@ -22,21 +22,31 @@
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 20px 0px 0px 0px">
                 {{project.description}}
             </div>
-            <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 10px 0px 25px 0px;border-bottom: 1px solid #E4E7ED;">
-                <el-tag size="small" type="success">{{project.language}}</el-tag>
-                <el-tag size="small" type="danger" v-if="project.license">{{project.license}}</el-tag>
-                <el-tooltip effect="dark" :content="'star '+project.stargazersCount" placement="bottom">
-                    <i class="el-icon-star-off" style="margin: 0px 5px 0px 15px"></i>
-                </el-tooltip>
-                {{project.stargazersCount}}
-                <el-tooltip effect="dark" :content="'watch '+project.watchersCount" placement="bottom">
-                    <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
-                </el-tooltip>
-                {{project.watchersCount}}
-                <el-tooltip effect="dark" :content="'fork '+project.forksCount" placement="bottom">
-                    <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
-                </el-tooltip>
-                {{project.forksCount}}
+            <div style="font-size: 1.1rem;color: #303133;padding: 15px 0px 15px 0px;border-bottom: 1px solid #E4E7ED;">
+                <el-row>
+                    <el-col :span="16"  style="padding-top: 5px">
+                        <el-tooltip effect="dark" :content="'star '+project.stargazersCount" placement="bottom">
+                            <i class="el-icon-star-off" style="margin: 0px 5px 0px 0px"></i>
+                        </el-tooltip>
+                        {{project.stargazersCount}}
+                        <el-tooltip effect="dark" :content="'watch '+project.watchersCount" placement="bottom">
+                            <i class="el-icon-view" style="margin: 0px 5px 0px 15px"></i>
+                        </el-tooltip>
+                        {{project.watchersCount}}
+                        <el-tooltip effect="dark" :content="'fork '+project.forksCount" placement="bottom">
+                            <i class="el-icon-bell" style="margin: 0px 5px 0px 15px"></i>
+                        </el-tooltip>
+                        {{project.forksCount}}
+                    </el-col>
+                    <el-col :span="8" style="text-align: right">
+                        
+                        <el-tag size="small" type="danger" v-if="project.license">{{project.license}}</el-tag>
+                        <el-tag size="small" type="success">{{project.language}}</el-tag>
+                    </el-col>
+
+                </el-row>
+
+
             </div>
             <div v-html="project.content" v-if="project.content" class="markdown-body" style="padding-top: 20px"></div>
             <div v-if="!project.content" style="padding: 20px 0px 20px 0px;text-align: center">
@@ -77,7 +87,7 @@
                 this.project.forksCount = result['forks_count']
                 this.project.language = result['language']
                 this.project.description = result['description']
-                this.project.license = result['license']?result['license']['spdx_id']:null
+                this.project.license = result['license'] ? result['license']['spdx_id'] : null
                 this.project.content = this.$markdown(base64.decode(result['readme_content']))
                 this.project.createTime = this.$util.utcToLocal(result['created_at'])
                 this.project.updateTime = this.$util.utcToLocal(result['updated_at'])
