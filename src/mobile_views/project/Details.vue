@@ -11,9 +11,15 @@
             {{project.description}}
         </div>
         <div style="padding: 0px 15px 5px 15px;color: #606266;border-bottom: 1px solid #E4E7ED;">
-            <van-icon name="points" />&nbsp;{{project.stargazersCount}}&emsp;
-            <van-icon name="exchange" />&nbsp;{{project.forksCount}}
-            <van-tag mark type="primary" style="float: right;">{{project.language}}</van-tag>
+                <van-row>
+                        <van-col span="12" style="font-size: 0.8rem;padding-top: 4px;color: #606266">
+                            <van-icon name="like" />&nbsp;{{project.stargazersCount}}&emsp;
+                            <van-icon name="coupon" />&nbsp;{{project.forksCount}}</van-col>
+                        <van-col span="12" style="text-align: right">
+                            <van-tag plain type="danger" v-if="project.license">{{project.license}}</van-tag>
+                            <van-tag plain type="primary">{{project.language}}</van-tag>
+                        </van-col>
+                    </van-row>
         </div>
         <div v-html="project.content" class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
@@ -51,6 +57,7 @@
                 this.project.forksCount = result['forks_count']
                 this.project.language = result['language']
                 this.project.description = result['description']
+                this.project.license = result['license'] ? result['license']['spdx_id'] : null
                 this.project.content = this.$markdown(base64.decode(result['readme_content']))
                 this.project.createTime = this.$util.utcToLocal(result['created_at'])
                 this.project.updateTime = this.$util.utcToLocal(result['updated_at'])

@@ -1,11 +1,11 @@
 <template>
-    <div style="background: #F2F6FC;min-height: 700px">
+    <div :style="'background: #f8f8f8;min-height: '+windowSize.height+'px'">
         <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -3px 10px #888888;width: 100%;" title="博客列表" right-text="分享"
             @click-right="$mobileShare()" />
         <div style="height: 60px;"></div>
         <router-link :to="`/mobile/user/blog/details/${item.id}`" v-for="(item,index) in blogs" :key="'p'+index">
-            <van-panel style="margin-bottom: 5px" :title="item.title" :desc="'更新时间 '+item.updateTime">
-                <div style="padding: 0px 15px 5px 15px;color: #606266;font-size: 0.9rem">{{item.description}}</div>
+            <van-panel style="margin-bottom: 10px" :title="item.title" :desc="'更新时间 '+item.updateTime">
+                <div style="padding: 7px 15px 7px 15px;color: #303133;font-size: 0.9rem">{{$util.cutStr(item.description,50)}}</div>
             </van-panel>
         </router-link>
         <div style="height: 100px;"></div>
@@ -18,6 +18,7 @@
     export default {
         data() {
             return {
+                windowSize: this.$util.getWindowSize(),
                 query: {
                     page: 1,
                     pageSize: 20,

@@ -16,3 +16,16 @@
         },
     }
 </script>
+
+<style>
+.mobile-border{
+    border-top:1px solid #E4E7ED;
+    border-bottom:1px solid #E4E7ED;
+}
+.mobile-border-top{
+    border-top:1px solid #E4E7ED;
+}
+.mobile-margin-top{
+    margin-top: 10px;
+}
+</style>

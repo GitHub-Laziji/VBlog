@@ -5,7 +5,7 @@
     "author": "辣子鸡 <30425217+GitHub-Laziji@users.noreply.github.com>",
     "private": true,
     "scripts": {
-        "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+        "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
         "start": "npm run dev",
         "unit": "jest --config test/unit/jest.conf.js --coverage",
         "e2e": "node test/e2e/runner.js",
