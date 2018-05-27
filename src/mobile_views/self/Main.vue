@@ -53,10 +53,10 @@
             ])
         },
         mounted() {
-            this.$toast({
-                message: '移动端开发中... 请在电脑上查看',
-                duration: 5000
-            })
+            // this.$toast({
+            //     message: '移动端开发中... 请在电脑上查看',
+            //     duration: 5000
+            // })
         },
         methods: {
 

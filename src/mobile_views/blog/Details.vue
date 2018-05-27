@@ -3,12 +3,12 @@
         <van-nav-bar style="position:fixed;top:0;z-index: 9999; box-shadow: 0px -5px 10px #888888;width: 100%;" :title="blog.title"
             left-text="返回" right-text="分享" @click-left="$router.go(-1)" @click-right="$mobileShare()" left-arrow/>
         <div style="height: 60px;"></div>
-        <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;padding: 10px">
+        <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;padding: 10px 10px 0px 10px">
             发布 {{blog.createTime}}
             <br> 更新 {{blog.updateTime}}
         </div>
-        <div style="font-size: 1.0rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 10px">
-            {{blog.description}}
+        <div style="font-size: 1.0rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 0px 10px">
+            <pre style="font-family: '微软雅黑'">{{blog.description}}</pre>
         </div>
         <div v-html="blog.content" class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
