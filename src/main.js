@@ -34,6 +34,7 @@ Vue.prototype.$setTitle = function (title) {
         document.title = store.state.configuration.htmlTitle
     }
 }
+
 Vue.prototype.$share = function (message) {
     if (!message) {
         message = window.location
@@ -76,6 +77,17 @@ Vue.prototype.$mobileShare = function (message) {
     }
 }
 
+Vue.prototype.$setFavicon = function (favicon) {
+    let link = document.createElement('link');
+    link.type = 'image/jpeg';
+    link.rel = 'shortcut icon';
+    link.href = favicon?favicon:store.state.user.avatarUrl;
+    let oldLink = document.querySelector("link[rel*='shortcut icon']");
+    if (oldLink) {
+        document.head.removeChild(oldLink);
+    }
+    document.head.appendChild(link);
+}
 
 
 Vue.prototype.$util = util

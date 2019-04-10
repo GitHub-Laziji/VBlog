@@ -283,6 +283,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     Vue.prototype.$setTitle(to.meta.title)
+    Vue.prototype.$setFavicon(to.meta.favicon)
     next()
 })
 
