@@ -1,6 +1,7 @@
 # VBlog
 
-![](https://img.shields.io/badge/vue-2.5.2-brightgreen.svg) ![](https://img.shields.io/badge/element--ui-2.3.5-brightgreen.svg) ![](https://img.shields.io/badge/vant-1.1.2-brightgreen.svg)
+![](https://img.shields.io/github/languages/top/github-laziji/VBlog.svg?style=flat)
+![](https://img.shields.io/github/stars/gitHub-laziji/VBlog.svg?style=social)
 
 
 ## [English Documents](README-EN.md)
@@ -18,9 +19,11 @@
 
 ## 简介
 
-博客基于 GitHub Pages 与 Github API 实现无后台，可动态发布博客的系统
-博客数据储存于gist 通过Github API 进行增删改查
-喜欢的话留下你的星星╭(●｀∀´●)╯╰(●’◡’●)╮
+博客可搭建在 GitHub Pages 上,
+文章数据储存于gist 中, 通过Github API 与数据进行交互, 实现无后台，可动态发布文章的博客系统
+
+> 最近暂无更新计划
+
 
 ## 演示地址
 [https://github-laziji.github.io][1]
