@@ -14,7 +14,7 @@
         "build": "node build/build.js"
     },
     "dependencies": {
-        "axios": "0.17.1",
+        "axios": "0.21.1",
         "element-ui": "^2.3.5",
         "js-base64": "^2.4.3",
         "js-cookie": "2.2.0",
