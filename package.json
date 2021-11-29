@@ -19,7 +19,7 @@
         "js-base64": "^2.4.3",
         "js-cookie": "2.2.0",
         "js-sha1": "^0.6.0",
-        "mavon-editor": "^2.5.2",
+        "mavon-editor": "^2.8.2",
         "vant": "^1.1.2",
         "vue": "^2.5.2",
         "vue-router": "^3.0.1",
