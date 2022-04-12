@@ -3,7 +3,6 @@ import store from '../store/index'
 
 export default {
     verifyToken: function (token) {
-        console.log("23142342343243");
         return request({
             url: '/user',
             headers: {'Authorization': 'token ' + token}
