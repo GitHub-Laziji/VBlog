@@ -16,7 +16,6 @@ service.interceptors.request.use(
             if (config.url.indexOf("?") >= 0) {
                 sp = "&"
             }
-            console.log("1111111111");
             config.headers['Authorization'] = "token " + token
             // config.url = config.url + sp + "access_token=" + token
         }
