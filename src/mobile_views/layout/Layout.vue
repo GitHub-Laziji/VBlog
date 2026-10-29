@@ -6,6 +6,8 @@
 </template>
 
 <script>
+    // 移动端 UI 库挂在 Layout 上懒加载，桌面端路由不会再拉 vant
+    import '../../plugins/vant'
     import { mapGetters } from 'vuex'
     import Bottombar from './components/Bottombar'
     import AppMain from './components/AppMain'

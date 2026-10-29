@@ -10,7 +10,7 @@
         <div style="font-size: 1.0rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 0px 10px">
             <pre style="font-family: '微软雅黑'">{{blog.description}}</pre>
         </div>
-        <div v-html="blog.content" class="markdown-body" style="padding: 10px"></div>
+        <div v-html="$sanitize(blog.content)" class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
     </div>
 </template>

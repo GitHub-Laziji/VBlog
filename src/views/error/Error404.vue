@@ -12,6 +12,8 @@
 </template>
 
 <script>
+    // 404 不经过 Layout，需要自己注册 element，否则 el-button/el-icon 不生效
+    import '../../plugins/element'
     export default {
         name: 'Error404',
         methods: {

@@ -1,28 +1,30 @@
 import Vue from 'vue'
-import store from '../store/index'
 import Router from 'vue-router'
-import Error404 from '@/views/error/Error404'
-import Layout from '@/views/layout/Layout'
 
-import NewMain from '@/views/new/Main'
-import SocialMain from '@/views/social/Main'
-import SocialDetails from '@/views/social/Details'
-import BlogMain from '@/views/blog/Main'
-import BlogAdd from '@/views/blog/Add'
-import BlogEdit from '@/views/blog/Edit'
-import BlogDetails from '@/views/blog/Details'
-import ProjectMain from '@/views/project/Main'
-import ProjectDetails from '@/views/project/Details'
-import ReadmeMain from '@/views/readme/Main'
-import ConfigureMain from '@/views/configure/Main'
-import HelperMain from '@/views/helper/Main'
+// 路由级懒加载：每个页面单独打包，首屏只下载当前路由需要的代码。
+// 原来 23 个页面全部静态 import，首屏必须把桌面端和移动端所有页面一次性拉下来。
+const Error404 = () => import('@/views/error/Error404')
+const Layout = () => import('@/views/layout/Layout')
 
-import MobileLayout from '@/mobile_views/layout/Layout'
-import MobileBlogMain from '@/mobile_views/blog/Main'
-import MobileBlogDetails from '@/mobile_views/blog/Details'
-import MobileProjectMain from '@/mobile_views/project/Main'
-import MobileProjectDetails from '@/mobile_views/project/Details'
-import MobileSelfMain from '@/mobile_views/self/Main'
+const NewMain = () => import('@/views/new/Main')
+const SocialMain = () => import('@/views/social/Main')
+const SocialDetails = () => import('@/views/social/Details')
+const BlogMain = () => import('@/views/blog/Main')
+const BlogAdd = () => import('@/views/blog/Add')
+const BlogEdit = () => import('@/views/blog/Edit')
+const BlogDetails = () => import('@/views/blog/Details')
+const ProjectMain = () => import('@/views/project/Main')
+const ProjectDetails = () => import('@/views/project/Details')
+const ReadmeMain = () => import('@/views/readme/Main')
+const ConfigureMain = () => import('@/views/configure/Main')
+const HelperMain = () => import('@/views/helper/Main')
+
+const MobileLayout = () => import('@/mobile_views/layout/Layout')
+const MobileBlogMain = () => import('@/mobile_views/blog/Main')
+const MobileBlogDetails = () => import('@/mobile_views/blog/Details')
+const MobileProjectMain = () => import('@/mobile_views/project/Main')
+const MobileProjectDetails = () => import('@/mobile_views/project/Details')
+const MobileSelfMain = () => import('@/mobile_views/self/Main')
 
 
 

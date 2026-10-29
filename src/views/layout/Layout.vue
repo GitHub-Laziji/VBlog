@@ -104,6 +104,8 @@
     </div>
 </template>
 <script>
+    // 桌面 UI 库挂在 Layout 上懒加载，移动端路由不会再拉 element-ui
+    import '../../plugins/element'
     import { mapGetters } from 'vuex'
     import Sidebar from './components/Sidebar'
     import AppMain from './components/AppMain'

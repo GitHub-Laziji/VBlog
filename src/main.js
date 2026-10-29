@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import DOMPurify from 'dompurify'
 import App from './App'
 import util from './utils/util'
 import router from './router'
@@ -7,18 +8,22 @@ import 'mavon-editor/dist/css/index.css'
 import 'mavon-editor/dist/markdown/github-markdown.min.css'
 import store from './store'
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-
-import Vant from 'vant'
-import 'vant/lib/vant-css/index.css'
-
-Vue.use(Vant)
-Vue.use(ElementUI)
 Vue.use(mavonEditor)
 
+// markdown 渲染结果直接进 v-html，必须过一遍消毒，避免文章里混入的
+// <script>/onerror 之类在读者浏览器里执行（XSS）。
+Vue.prototype.$sanitize = function (html) {
+    if (!html) {
+        return ""
+    }
+    return DOMPurify.sanitize(html, {
+        ADD_ATTR: ['target'],
+        ALLOW_DATA_ATTR: false
+    })
+}
+
 Vue.prototype.$markdown = function (value) {
-    return mavonEditor.markdownIt.render(value)
+    return Vue.prototype.$sanitize(mavonEditor.markdownIt.render(value || ""))
 }
 
 Vue.prototype.$reload = function (context) {

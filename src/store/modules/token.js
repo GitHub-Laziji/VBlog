@@ -2,6 +2,7 @@ import Cookie from '@/utils/cookie'
 import UserApi from '@/api/user'
 import store from '../index'
 import Vue from 'vue'
+import message, { notify } from '@/utils/notify'
 
 const TOKEN_KEY = "TOKEN_KEY"
 const token = {
@@ -27,28 +28,34 @@ const token = {
                 let githubUsername = store.state.configuration.githubUsername
                 if (githubUsername == result['login']) {
                     commit('SET_TOKEN', accessToken)
-                    Vue.prototype.$notify({
+                    notify({
                         title: '成功',
                         message: 'Token绑定成功',
                         type: 'success'
                     })
-                    // Vue.prototype.$message({
+                    // message({
                     //     message: 'Token绑定成功',
                     //     type: 'success'
                     // })
                 } else {
-                    Vue.prototype.$message({
+                    message({
                         message: 'Token用户不一致',
                         type: 'error'
                     })
                 }
-            }).catch(() => {
-
+            }).catch((err) => {
+                // 原来这里是空的 catch：校验 token 一失败（网络错误、接口 500 等）
+                // 界面上什么都不显示，用户以为点绑定没反应。至少留痕，方便排查。
+                console.error('[token] 绑定校验失败', err)
+                message({
+                    message: 'Token 绑定失败，请稍后重试',
+                    type: 'error'
+                })
             })
         },
         Cancellation({ commit }) {
             commit('REMOVE_TOKEN')
-            Vue.prototype.$message({
+            message({
                 message: 'Token取消绑定',
                 type: 'info'
             })

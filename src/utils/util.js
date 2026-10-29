@@ -17,19 +17,25 @@ export default {
         return reg.test(str)
     },
     //yyyy-MM-ddThh-mm-ss.*
+    // 原实现手动 +8 小时把时区写死，非东八区用户看到的发布时间全是错的；
+    // 改成交给 Date 按访问者本地时区格式化。
     utcToLocal(time) {
+        if (!time) {
+            return ""
+        }
+        let date = new Date(time)
+        if (isNaN(date.getTime())) {
+            return time
+        }
         let formatNum = (num)=>{
             return num>=10?num:('0'+num)
         }
-        let arr = time.split(/[^0-9]/)
-        let worldDate = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5])
-        let localDate = new Date(worldDate.getTime() + 8 * 60 * 60 * 1000)
-        return formatNum(localDate.getFullYear()) + "-"
-            + formatNum((localDate.getMonth() + 1)) + "-" 
-            + formatNum(localDate.getDate()) + " " 
-            + formatNum(localDate.getHours()) + ":" 
-            + formatNum(localDate.getMinutes()) + ":" 
-            + formatNum(localDate.getSeconds())
+        return formatNum(date.getFullYear()) + "-"
+            + formatNum((date.getMonth() + 1)) + "-"
+            + formatNum(date.getDate()) + " "
+            + formatNum(date.getHours()) + ":"
+            + formatNum(date.getMinutes()) + ":"
+            + formatNum(date.getSeconds())
     },
     guid() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -48,33 +54,25 @@ export default {
         return r
     },
     fullScreen() {
-        var element = document.documentElement
-        if (window.ActiveXObject) {
-            var WsShell = new ActiveXObject('WScript.Shell')
-            WsShell.SendKeys('{F11}')
-        } else if (element.requestFullScreen) {
-            element.requestFullScreen()
+        let element = document.documentElement
+        // 标准 API 是 requestFullscreen（小写 s）。原代码写 requestFullScreen，
+        // 现代浏览器永远命中不了，只能靠 webkit 兼容分支碰运气；IE 的 ActiveX
+        // 分支已随 IE 退役，直接删掉。
+        if (element.requestFullscreen) {
+            element.requestFullscreen().catch(() => {})
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen()
         } else if (element.msRequestFullscreen) {
             element.msRequestFullscreen()
-        } else if (element.webkitRequestFullScreen) {
-            element.webkitRequestFullScreen()
-        } else if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen()
         }
     },
     fullExit() {
-        var element = document.documentElement
-        if (window.ActiveXObject) {
-            var WsShell = new ActiveXObject('WScript.Shell')
-            WsShell.SendKeys('{F11}')
-        } else if (element.requestFullScreen) {
-            document.exitFullscreen()
-        } else if (element.msRequestFullscreen) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {})
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen()
+        } else if (document.msExitFullscreen) {
             document.msExitFullscreen()
-        } else if (element.webkitRequestFullScreen) {
-            document.webkitCancelFullScreen()
-        } else if (element.mozRequestFullScreen) {
-            document.mozCancelFullScreen()
         }
     },
 
@@ -123,8 +121,9 @@ export default {
     },
     getWindowSize() {
         let windowSize = {}
-        windowSize.width = window.innerWeight || document.documentElement.clientWidth || document.body.clientWidth
-        windowSize.height = window.innerWeight || document.documentElement.clientHeight || document.body.clientHeight
+        // 原来写的是 innerWeight（拼写错误），永远取不到真实视口尺寸
+        windowSize.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+        windowSize.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
         return windowSize
     },
     addHttp(url){

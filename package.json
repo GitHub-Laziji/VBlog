@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "axios": "0.17.1",
+        "dompurify": "^2.5.9",
         "element-ui": "^2.3.5",
         "js-base64": "^2.4.3",
         "js-cookie": "2.2.0",
@@ -27,8 +28,6 @@
         "vuex": "3.0.1"
     },
     "devDependencies": {
-        "less": "^2.7.3",
-        "less-loader": "^4.0.5",
         "autoprefixer": "^7.1.2",
         "babel-core": "^6.22.1",
         "babel-eslint": "^8.2.1",
@@ -45,6 +44,7 @@
         "babel-register": "^6.22.0",
         "chalk": "^2.0.1",
         "chromedriver": "^2.27.2",
+        "compression-webpack-plugin": "^1.1.12",
         "copy-webpack-plugin": "^4.0.1",
         "cross-spawn": "^5.0.1",
         "css-loader": "^0.28.0",
@@ -63,6 +63,8 @@
         "html-webpack-plugin": "^2.30.1",
         "jest": "^22.0.4",
         "jest-serializer-vue": "^0.3.0",
+        "less": "^2.7.3",
+        "less-loader": "^4.0.5",
         "nightwatch": "^0.9.12",
         "node-notifier": "^5.1.2",
         "optimize-css-assets-webpack-plugin": "^3.2.0",

@@ -21,7 +21,7 @@
                         </van-col>
                     </van-row>
         </div>
-        <div v-html="project.content" class="markdown-body" style="padding: 10px"></div>
+        <div v-html="$sanitize(project.content)" class="markdown-body" style="padding: 10px"></div>
         <div style="height: 100px;"></div>
     </div>
 </template>
